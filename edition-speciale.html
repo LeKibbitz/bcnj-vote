@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge Club de Nancy-Jarville &mdash; L'&Eacute;dition Sp&eacute;ciale</title>
+<meta name="description" content="Bridge Club de Nancy-Jarville &mdash; Champion de France DN1 et DN2 par paires 2024&ndash;2025. Tournois, cours et convivialit&eacute; depuis 1945 &agrave; Heillecourt.">
+<meta property="og:title" content="Bridge Club de Nancy-Jarville &mdash; L'&Eacute;dition Sp&eacute;ciale">
+<meta property="og:description" content="Champion de France DN1 et DN2 par paires 2024&ndash;2025. Tournois, cours et convivialit&eacute; depuis 1945.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://bcnj.lekibbitz.fr/images/bcnj-logo.png">
+<meta property="og:url" content="https://bcnj.lekibbitz.fr">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Bridge Club de Nancy-Jarville">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bridge Club de Nancy-Jarville &mdash; L'&Eacute;dition Sp&eacute;ciale">
+<meta name="twitter:description" content="Champion de France DN1 et DN2 par paires 2024&ndash;2025. Tournois, cours et convivialit&eacute; depuis 1945.">
+<meta name="twitter:image" content="https://bcnj.lekibbitz.fr/images/bcnj-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "SportsClub"],
+  "name": "Bridge Club de Nancy-Jarville",
+  "alternateName": "BCNJ",
+  "description": "Club de bridge fondé en 1945, Champion de France DN1 et DN2 par paires 2024–2025. Tournois, cours et convivialité à Heillecourt.",
+  "url": "https://bcnj.lekibbitz.fr",
+  "logo": "https://bcnj.lekibbitz.fr/images/bcnj-logo.png",
+  "image": "https://bcnj.lekibbitz.fr/images/bcnj-logo.png",
+  "telephone": "+33939241990",
+  "foundingDate": "1945",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bât. T.S.B., 1 rue du Collège",
+    "addressLocality": "Heillecourt",
+    "postalCode": "54180",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.6525,
+    "longitude": 6.1645
+  },
+  "sport": "Bridge",
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Fédération Française de Bridge",
+    "url": "https://www.ffbridge.fr"
+  },
+  "award": "Champion de France DN1 et DN2 par paires 2024–2025",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "14:15",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "14:15",
+      "closes": "18:00"
+    }
+  ]
+}
+</script>
+
+<style>
+/* =============================================
+   ROOT & RESET
+   ============================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #f4ede0;
+  --ink: #1a1410;
+  --red: #c41e3a;
+  --gold: #b8860b;
+  --paper-mid: #e8dfd0;
+  --ink-light: #5a5045;
+  --rule: rgba(26, 20, 16, 0.15);
+  --ff-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --ff-body: 'Libre Baskerville', Georgia, serif;
+  --ff-mono: 'Space Mono', 'Courier New', monospace;
+  --transition-theme: background-color 0.6s ease, color 0.6s ease, border-color 0.4s ease;
+}
+
+html.dark {
+  --paper: #1a1410;
+  --ink: #f4ede0;
+  --red: #e8384f;
+  --gold: #d4a843;
+  --paper-mid: #2a2420;
+  --ink-light: #b0a89a;
+  --rule: rgba(244, 237, 224, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--ff-body);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: var(--transition-theme);
+}
+
+a { color: var(--red); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--gold); }
+img { max-width: 100%; height: auto; display: block; }
+::selection { background: var(--red); color: var(--paper); }
+
+/* =============================================
+   UTILITY
+   ============================================= */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.mono { font-family: var(--ff-mono); }
+.serif { font-family: var(--ff-body); }
+.display { font-family: var(--ff-display); }
+.editorial-red { color: var(--red); }
+.editorial-gold { color: var(--gold); }
+.text-light { color: var(--ink-light); }
+.rule-top { border-top: 1px solid var(--rule); }
+.rule-bottom { border-bottom: 1px solid var(--rule); }
+.rule-heavy { border-top: 3px solid var(--ink); }
+.section-pad { padding: 6rem 0; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+.reveal-fade {
+  opacity: 0;
+}
+
+/* =============================================
+   DARK MODE TOGGLE
+   ============================================= */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-theme), transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+html.dark .theme-toggle .icon-sun { display: inline; }
+html.dark .theme-toggle .icon-moon { display: none; }
+html:not(.dark) .theme-toggle .icon-sun { display: none; }
+html:not(.dark) .theme-toggle .icon-moon { display: inline; }
+
+/* =============================================
+   MAGAZINE NAV (Table of Contents)
+   ============================================= */
+.mag-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9990;
+  padding: 1rem 0;
+  transition: var(--transition-theme), transform 0.4s ease, box-shadow 0.4s ease;
+  transform: translateY(-100%);
+}
+.mag-nav.visible {
+  transform: translateY(0);
+  background: var(--paper);
+  box-shadow: 0 1px 0 var(--rule);
+}
+.mag-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.mag-nav-title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.mag-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  overflow-x: auto;
+}
+.mag-nav-links a {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  white-space: nowrap;
+  transition: color 0.3s;
+  position: relative;
+}
+.mag-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--red);
+  transition: width 0.3s;
+}
+.mag-nav-links a:hover,
+.mag-nav-links a.active {
+  color: var(--red);
+}
+.mag-nav-links a:hover::after,
+.mag-nav-links a.active::after {
+  width: 100%;
+}
+.mag-nav-links a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Hamburger menu button (mobile) */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--ink);
+  z-index: 10001;
+  transition: color 0.3s;
+}
+.hamburger-btn:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.hamburger-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+}
+.hamburger-btn .line1,
+.hamburger-btn .line2,
+.hamburger-btn .line3 {
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.hamburger-btn.active .line1 { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.active .line2 { opacity: 0; }
+.hamburger-btn.active .line3 { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile slide-in nav */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 20, 16, 0.5);
+  z-index: 9995;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.mobile-nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.mobile-nav-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: 100vh;
+  background: var(--paper);
+  z-index: 9996;
+  padding: 5rem 2rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.6s ease;
+  overflow-y: auto;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+}
+.mobile-nav-panel.open {
+  transform: translateX(0);
+}
+.mobile-nav-panel ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mobile-nav-panel a {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.3s, border-color 0.3s;
+}
+.mobile-nav-panel a:hover,
+.mobile-nav-panel a.active {
+  color: var(--red);
+}
+.mobile-nav-panel a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .mag-nav-links { display: none; }
+  .hamburger-btn { display: block; }
+}
+@media (min-width: 769px) {
+  .mobile-nav-overlay,
+  .mobile-nav-panel { display: none !important; }
+}
+
+/* =============================================
+   SECTION 1: COVER
+   ============================================= */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem clamp(1rem, 3vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(196, 30, 58, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(184, 134, 11, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover-issue {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 2rem;
+}
+.cover-title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.cover-title .line {
+  display: block;
+  overflow: hidden;
+}
+.cover-title .line-inner {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.cover-line-1 { font-size: clamp(2.8rem, 11vw, 10rem); }
+.cover-line-2 { font-size: clamp(1.8rem, 5.5vw, 5rem); font-weight: 400; font-style: italic; color: var(--red); }
+.cover-line-3 { font-size: clamp(2.2rem, 8.5vw, 7.5rem); }
+
+.cover-sub {
+  font-family: var(--ff-mono);
+  font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+.cover-sub .sep { color: var(--red); }
+
+.cover-champion {
+  margin-top: 1.5rem;
+  padding: 0.6rem 2rem;
+  border: 1px solid var(--gold);
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  transition: border-color 0.4s, color 0.4s;
+}
+
+.cover-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+  animation: float 2.5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.cover-rule {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--ink));
+  opacity: 0.15;
+}
+
+/* Decorative suit marks */
+.cover-suits {
+  position: absolute;
+  top: 2rem;
+  right: clamp(1.5rem, 4vw, 4rem);
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  color: var(--rule);
+}
+
+@media (max-width: 768px) {
+  .cover { padding: 2rem 1rem; }
+  .cover-sub { gap: 0.3rem 0.8rem; letter-spacing: 0.2em; }
+  .cover-champion { padding: 0.5rem 1.2rem; font-size: 0.55rem; letter-spacing: 0.15em; }
+}
+
+/* =============================================
+   SECTION 2: OPENING SPREAD
+   ============================================= */
+.spread {
+  padding: 6rem 0;
+  border-top: 3px solid var(--ink);
+  transition: border-color 0.4s;
+}
+.spread-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.spread-section-label {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.spread-page-no {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  color: var(--ink-light);
+}
+
+.spread-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.pull-quote {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+  position: relative;
+  padding-left: 2rem;
+  border-left: 3px solid var(--red);
+}
+.pull-quote-attr {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  font-style: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 1.5rem;
+}
+
+.spread-body { padding-top: 0.5rem; }
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  margin-right: 0.6rem;
+  margin-top: 0.1rem;
+  color: var(--red);
+}
+
+.spread-body p {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+.spread-image {
+  margin-top: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.spread-image img {
+  width: 100%;
+  display: block;
+}
+.spread-image-caption {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--red); color: #fff; transform: translateY(-2px); }
+.btn-primary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: var(--transition-theme), transform 0.2s;
+}
+.btn-secondary:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+.btn-secondary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+@media (max-width: 768px) {
+  .spread-grid { grid-template-columns: 1fr; }
+  .pull-quote { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+}
+
+/* =============================================
+   SECTION 3: LA VIE DU CLUB
+   ============================================= */
+.vie-du-club { background: var(--paper-mid); transition: background-color 0.6s; }
+
+.section-headline {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+.section-headline em {
+  font-weight: 400;
+  color: var(--red);
+}
+
+/* Schedule Table */
+.schedule-wrap { margin-bottom: 4rem; }
+.schedule-label {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+  display: block;
+}
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.schedule-table th,
+.schedule-table td {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.4s, background-color 0.2s;
+}
+.schedule-table th {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  font-weight: 400;
+}
+.schedule-table td {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+}
+.schedule-table td:first-child {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.schedule-table tbody tr:hover td {
+  background-color: rgba(196, 30, 58, 0.04);
+}
+html.dark .schedule-table tbody tr:hover td {
+  background-color: rgba(232, 56, 79, 0.06);
+}
+.schedule-table .format-badge {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  transition: border-color 0.4s, color 0.4s;
+}
+
+/* Stacked schedule on mobile */
+@media (max-width: 560px) {
+  .schedule-table thead { display: none; }
+  .schedule-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .schedule-table tbody tr:hover td { background: none; }
+  .schedule-table td {
+    border-bottom: none;
+    padding: 0.25rem 0;
+  }
+  .schedule-table td:first-child {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+  .schedule-table td:nth-child(2) {
+    font-family: var(--ff-mono);
+    font-size: 0.8rem;
+    color: var(--red);
+  }
+  .schedule-table td:nth-child(2)::before {
+    content: '';
+  }
+}
+
+/* Next Event */
+.next-event {
+  border: 1px solid var(--red);
+  padding: 2rem 2.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s;
+}
+.next-event::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--red);
+}
+.next-event-label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.5rem;
+}
+.next-event-title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 0.25rem;
+}
+.next-event-subtitle {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+.next-event-date {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  color: var(--ink-light);
+}
+
+/* Two col layout */
+.vie-two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* Address sidebar */
+.sidebar-card {
+  padding: 2rem;
+  border: 1px solid var(--rule);
+  transition: border-color 0.4s;
+}
+.sidebar-card-title {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.sidebar-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.sidebar-card .address-line {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Espace Membre */
+.espace-membre {
+  margin-top: 1.5rem;
+}
+.espace-membre-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.espace-membre-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.espace-membre-form label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.espace-membre-form input {
+  font-family: var(--ff-body);
+  font-size: 0.85rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.3s, background-color 0.6s, color 0.6s;
+  outline: none;
+}
+.espace-membre-form input:focus {
+  border-color: var(--red);
+}
+.espace-membre-form input::placeholder {
+  color: var(--ink-light);
+  opacity: 0.6;
+}
+.btn-login {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  margin-top: 0.25rem;
+}
+.btn-login:hover { background: var(--red); color: #fff; }
+.btn-login:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.espace-membre-link {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--ink-light);
+}
+.espace-membre-link a {
+  color: var(--red);
+}
+
+/* Mastheads / Comite */
+.masthead { margin-top: 4rem; }
+.masthead-title {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.masthead-person {
+  text-align: center;
+}
+.masthead-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin: 0 auto 1rem;
+  transition: var(--transition-theme);
+}
+.masthead-name {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.masthead-role {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+@media (max-width: 768px) {
+  .vie-two-col { grid-template-columns: 1fr; }
+  .masthead-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* =============================================
+   SECTION 4: L'ECOLE
+   ============================================= */
+.ecole { position: relative; }
+
+.ecole-headline {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.ecole-headline em {
+  font-weight: 400;
+  color: var(--red);
+  display: block;
+}
+.ecole-sub {
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--ink-light);
+  max-width: 600px;
+  margin-bottom: 4rem;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.level-card {
+  padding: 2.5rem 2rem;
+  border-top: 3px solid var(--ink);
+  position: relative;
+  transition: border-color 0.4s, transform 0.3s;
+}
+.level-card:hover { border-top-color: var(--red); transform: translateY(-4px); }
+.level-number {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1;
+  color: var(--rule);
+  margin-bottom: 1rem;
+  transition: color 0.4s, transform 0.4s;
+}
+.level-card:hover .level-number {
+  color: var(--red);
+  transform: translateY(-6px);
+}
+.level-title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.level-desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+.level-detail {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ecole-cta {
+  margin-top: 4rem;
+  text-align: center;
+}
+.ecole-cta .giant-cta {
+  display: inline-block;
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  padding: 1.5rem 3.5rem;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  text-decoration: none;
+}
+.ecole-cta .giant-cta:hover { background: var(--ink); transform: scale(1.02); color: #fff; }
+.ecole-cta .giant-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.ecole-cta-note {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .levels-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================
+   SECTION 5: LE COIN DES CURIEUX
+   ============================================= */
+.curieux { background: var(--paper-mid); transition: background-color 0.6s; }
+
+.dept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.dept-card {
+  padding: 2.5rem;
+  border: 1px solid var(--rule);
+  position: relative;
+  transition: border-color 0.4s, box-shadow 0.3s;
+}
+.dept-card:hover {
+  border-color: var(--red);
+  box-shadow: 8px 8px 0 var(--rule);
+}
+.dept-card.featured {
+  grid-column: 1 / -1;
+  border-color: var(--gold);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.dept-label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.dept-title {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.dept-desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+.dept-meta {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.dept-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.dept-issue-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.4s;
+}
+.dept-issue-no {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--red);
+  min-width: 2.5rem;
+  text-align: right;
+}
+.dept-issue-title {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.headline-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+.headline-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+  padding-left: 1.5rem;
+  transition: border-color 0.4s;
+}
+.headline-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--red);
+}
+
+@media (max-width: 768px) {
+  .dept-grid { grid-template-columns: 1fr; }
+  .dept-card.featured { grid-template-columns: 1fr; }
+}
+
+/* =============================================
+   SECTION 6: KIB
+   ============================================= */
+.kib-section {
+  position: relative;
+  overflow: hidden;
+}
+.kib-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(196, 30, 58, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.kib-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.kib-headline {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  margin-bottom: 1rem;
+}
+.kib-subtitle {
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-light);
+  margin-bottom: 2rem;
+}
+.kib-phone {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.kib-phone .phone-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.kib-features {
+  list-style: none;
+}
+.kib-features li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  transition: border-color 0.4s;
+}
+.kib-features li .feat-bullet {
+  font-family: var(--ff-display);
+  color: var(--red);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.kib-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+.kib-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 2.5rem;
+  position: relative;
+  transition: var(--transition-theme), box-shadow 0.3s;
+  box-shadow: 12px 12px 0 var(--rule);
+}
+.kib-card-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+.kib-card-label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 0.5rem;
+}
+.kib-card-name {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.kib-card-desc {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .kib-grid { grid-template-columns: 1fr; }
+  .kib-visual { padding: 2rem 0; }
+}
+
+/* =============================================
+   SECTION 7: COLOPHON / FOOTER
+   ============================================= */
+.colophon {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 5rem 0 3rem;
+  transition: var(--transition-theme);
+}
+html.dark .colophon { background: var(--paper-mid); color: var(--ink); }
+
+.colophon-rule {
+  width: 100%;
+  height: 3px;
+  background: var(--red);
+  margin-bottom: 4rem;
+}
+.colophon-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+}
+.colophon-section-title {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+}
+.colophon p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+.colophon .addr-display {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 1;
+  margin-bottom: 0.5rem;
+}
+.colophon a { color: var(--paper); opacity: 0.7; transition: opacity 0.3s; }
+html.dark .colophon a { color: var(--ink); }
+.colophon a:hover { opacity: 1; color: var(--red); }
+.colophon a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.sommaire-list {
+  list-style: none;
+}
+.sommaire-list li {
+  padding: 0.4rem 0;
+}
+.sommaire-list a {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.affiliations {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.affiliations img {
+  height: 50px;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  filter: brightness(0) invert(1);
+}
+html.dark .affiliations img { filter: none; opacity: 0.7; }
+.affiliations img:hover { opacity: 1; }
+
+.colophon-bottom {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(244, 237, 224, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+html.dark .colophon-bottom { border-top-color: var(--rule); }
+.colophon-copy {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+.colophon-suits {
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .colophon-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* =============================================
+   DIVIDERS
+   ============================================= */
+.editorial-divider {
+  padding: 2rem 0;
+  text-align: center;
+}
+.editorial-divider .divider-suits {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  letter-spacing: 1rem;
+  color: var(--rule);
+}
+
+/* =============================================
+   LOADING SCREEN
+   ============================================= */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-text {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+}
+.loader-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 0.5rem;
+}
+
+
+/* === QR CODE === */
+.qr-vote-block{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.8rem;background:rgba(250,246,238,.92);border:1px solid rgba(26,26,26,.15);border-radius:10px;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,.08);transition:opacity .3s;cursor:pointer}
+.qr-vote-block:hover{border-color:rgba(201,167,78,.5);box-shadow:0 4px 20px rgba(201,167,78,.15)}
+.qr-vote-block img{width:80px;height:80px;border-radius:4px}
+.qr-vote-block p{font-family:'Space Grotesk',sans-serif;font-size:.55rem;color:#1a1a1a;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.3;margin:0}
+.qr-vote-block .qr-label{color:#888;font-size:.5rem}
+@media(prefers-color-scheme:dark){
+.qr-vote-block{background:rgba(10,10,10,.85);border-color:rgba(201,167,78,.3)}
+.qr-vote-block p{color:#c9a74e}
+.qr-vote-block .qr-label{color:#999}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     LOADING SCREEN
+     ============================================ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-text">BCNJ</div>
+  <div class="loader-sub">L'&Eacute;dition Sp&eacute;ciale</div>
+</div>
+
+<!-- ============================================
+     DARK MODE TOGGLE
+     ============================================ -->
+<button class="theme-toggle" id="themeToggle" aria-label="Basculer le mode sombre">
+  <span class="icon-moon" aria-hidden="true">&#9790;</span>
+  <span class="icon-sun" aria-hidden="true">&#9728;</span>
+</button>
+
+<!-- ============================================
+     MAGAZINE NAVIGATION
+     ============================================ -->
+<nav class="mag-nav" id="magNav" role="navigation" aria-label="Sommaire du magazine">
+  <div class="mag-nav-inner">
+    <span class="mag-nav-title">BCNJ</span>
+    <ul class="mag-nav-links" role="list">
+      <li><a href="#cover">Couverture</a></li>
+      <li><a href="#spread">Ouverture</a></li>
+      <li><a href="#vie">La Vie du Club</a></li>
+      <li><a href="#ecole">L'&Eacute;cole</a></li>
+      <li><a href="#curieux">Les Curieux</a></li>
+      <li><a href="#kib">Kib</a></li>
+      <li><a href="#colophon">Colophon</a></li>
+    </ul>
+    <!-- Hamburger button for mobile -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="mobileNavPanel">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <line class="line1" x1="3" y1="5" x2="21" y2="5"/>
+        <line class="line2" x1="3" y1="12" x2="21" y2="12"/>
+        <line class="line3" x1="3" y1="19" x2="21" y2="19"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile slide-in navigation -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+<div class="mobile-nav-panel" id="mobileNavPanel" role="navigation" aria-label="Menu principal">
+  <ul role="list">
+    <li><a href="#cover">Couverture</a></li>
+    <li><a href="#spread">Ouverture</a></li>
+    <li><a href="#vie">La Vie du Club</a></li>
+    <li><a href="#ecole">L'&Eacute;cole</a></li>
+    <li><a href="#curieux">Les Curieux</a></li>
+    <li><a href="#kib">Kib</a></li>
+    <li><a href="#colophon">Colophon</a></li>
+  </ul>
+</div>
+
+<!-- ============================================
+     SECTION 1: COVER
+     ============================================ -->
+<section class="cover" id="cover">
+  <div class="cover-suits" aria-hidden="true">&#9824; &#9829; &#9830; &#9827;</div>
+  <span class="cover-issue mono">L'&Eacute;dition Sp&eacute;ciale &mdash; Printemps 2026</span>
+
+  <h1 class="cover-title">
+    <span class="line cover-line-1"><span class="line-inner" id="coverLine1">Bridge Club</span></span>
+    <span class="line cover-line-2"><span class="line-inner" id="coverLine2">de</span></span>
+    <span class="line cover-line-3"><span class="line-inner" id="coverLine3">Nancy-Jarville</span></span>
+  </h1>
+
+  <div class="cover-sub">
+    <span>Est. 1945</span>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <span>Heillecourt</span>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <span>Champion de France DN1 &amp; DN2 par paires 2024&ndash;2025</span>
+  </div>
+
+  <div class="cover-champion reveal-fade">Champion de France DN1 et DN2 par paires 2024&ndash;2025</div>
+
+  <span class="cover-scroll" aria-hidden="true">D&eacute;filer pour lire &darr;</span>
+  <div class="cover-rule" aria-hidden="true"></div>
+</section>
+
+<!-- ============================================
+     SECTION 2: THE OPENING SPREAD
+     ============================================ -->
+<section class="spread section-pad" id="spread">
+  <div class="container">
+    <div class="spread-header rule-bottom" style="padding-bottom:0.75rem; margin-bottom:3rem;">
+      <span class="spread-section-label">Ouverture</span>
+      <span class="spread-page-no mono">pp. 02&ndash;03</span>
+    </div>
+
+    <div class="spread-grid">
+      <!-- Left: Pull Quote -->
+      <div class="reveal-left">
+        <blockquote class="pull-quote">
+          &laquo;&thinsp;Tournois, cours et convivialit&eacute; depuis plus de cinquante ans.&thinsp;&raquo;
+          <span class="pull-quote-attr">Bridge Club de Nancy-Jarville</span>
+        </blockquote>
+      </div>
+
+      <!-- Right: Intro + Image + CTAs -->
+      <div class="spread-body reveal-right">
+        <p class="drop-cap">Depuis 1945, le Bridge Club de Nancy-Jarville r&eacute;unit passionn&eacute;s et curieux autour d'un jeu qui conjugue strat&eacute;gie, psychologie et &eacute;l&eacute;gance. Install&eacute; au c&oelig;ur de Heillecourt, dans le b&acirc;timent T.S.B., le club est bien plus qu'un lieu de jeu&thinsp;: c'est une communaut&eacute; vivante, un espace o&ugrave; l'on apprend, o&ugrave; l'on rivalise et, surtout, o&ugrave; l'on partage.</p>
+
+        <p>Sacr&eacute; Champion de France DN1 et DN2 par paires 2024&ndash;2025, le BCNJ poursuit une tradition d'excellence qui inspire chaque g&eacute;n&eacute;ration de bridgeurs. Que vous soyez d&eacute;butant absolu ou comp&eacute;titeur aguerri, vous trouverez ici votre place.</p>
+
+        <div class="spread-image">
+          <img src="https://hyperagent.com/api/files/usergenerated/threads/cmorl37pa2vfi06ad1m4lhler/images/ecaf4cce-8b7a-4c6c-99ef-23ef98654d7f.png" alt="Les joueurs du Bridge Club de Nancy-Jarville lors d'un tournoi" loading="eager" width="800" height="533">
+          <span class="spread-image-caption">Le BCNJ &mdash; Saison 2024&ndash;2025, Heillecourt</span>
+        </div>
+
+        <div class="cta-group">
+          <a href="#vie" class="btn-primary" aria-label="D&eacute;couvrir la vie du club">D&eacute;couvrir le club &rarr;</a>
+          <a href="#ecole" class="btn-secondary" aria-label="S'inscrire au premier cours d'essai gratuit">Premier cours d'essai gratuit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="editorial-divider" aria-hidden="true">
+  <span class="divider-suits">&#9824;&ensp;&#9829;&ensp;&#9830;&ensp;&#9827;</span>
+</div>
+
+<!-- ============================================
+     SECTION 3: LA VIE DU CLUB
+     ============================================ -->
+<section class="vie-du-club section-pad" id="vie">
+  <div class="container">
+    <div class="spread-header rule-bottom" style="padding-bottom:0.75rem; margin-bottom:3rem;">
+      <span class="spread-section-label">La Vie du Club</span>
+      <span class="spread-page-no mono">pp. 04&ndash;07</span>
+    </div>
+
+    <h2 class="section-headline reveal-up">La Vie<br><em>du Club</em></h2>
+
+    <!-- Next Event -->
+    <div class="next-event reveal-up">
+      <div class="next-event-label">Prochain &eacute;v&eacute;nement</div>
+      <div class="next-event-title">E-MATCH/4</div>
+      <div class="next-event-subtitle">Les Vendredis de Nancy</div>
+      <div class="next-event-date">Jeudi 15 mai 2026 &mdash; 20h15 &middot; RealBridge</div>
+    </div>
+
+    <div class="vie-two-col">
+      <div>
+        <!-- Schedule -->
+        <div class="schedule-wrap reveal-up">
+          <span class="schedule-label" id="scheduleLabel">Programme hebdomadaire</span>
+          <table class="schedule-table" aria-labelledby="scheduleLabel" role="table">
+            <thead>
+              <tr>
+                <th scope="col">Jour</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Format</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lundi</td>
+                <td>20h00</td>
+                <td>RealBridge <span class="format-badge">En ligne</span></td>
+              </tr>
+              <tr>
+                <td>Mardi</td>
+                <td>14h15</td>
+                <td>Tournoi au club <span class="format-badge">Pr&eacute;sentiel</span></td>
+              </tr>
+              <tr>
+                <td>Jeudi</td>
+                <td>14h15</td>
+                <td>Tournoi au club <span class="format-badge">Pr&eacute;sentiel</span></td>
+              </tr>
+              <tr>
+                <td>Vendredi</td>
+                <td>20h00</td>
+                <td>RealBridge <span class="format-badge">En ligne</span></td>
+              </tr>
+              <tr>
+                <td>Dimanche</td>
+                <td>20h00</td>
+                <td>RealBridge <span class="format-badge">En ligne</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Masthead -->
+        <div class="masthead reveal-up">
+          <div class="masthead-title">Comit&eacute; Directeur</div>
+          <div class="masthead-grid">
+            <div class="masthead-person">
+              <div class="masthead-avatar" aria-hidden="true">CW</div>
+              <div class="masthead-name">Christian Weber</div>
+              <div class="masthead-role">Pr&eacute;sident</div>
+            </div>
+            <div class="masthead-person">
+              <div class="masthead-avatar" aria-hidden="true">MH</div>
+              <div class="masthead-name">Marie-H&eacute;l&egrave;ne Munier</div>
+              <div class="masthead-role">Vice-Pr&eacute;sidente</div>
+            </div>
+            <div class="masthead-person">
+              <div class="masthead-avatar" aria-hidden="true">PL</div>
+              <div class="masthead-name">Pierre Lavigne</div>
+              <div class="masthead-role">Tr&eacute;sorier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="sidebar-card reveal-right">
+          <div class="sidebar-card-title">Adresse</div>
+          <p class="address-line">B&acirc;t. T.S.B.</p>
+          <p>1 rue du Coll&egrave;ge</p>
+          <p>54180 Heillecourt</p>
+          <p style="margin-top:1rem;">
+            <a href="https://maps.google.com/?q=1+rue+du+Coll%C3%A8ge+54180+Heillecourt" target="_blank" rel="noopener noreferrer" style="color:var(--red);" aria-label="Voir l'adresse du club sur Google Maps">Voir sur Google Maps &rarr;</a>
+          </p>
+        </div>
+
+        <div class="sidebar-card reveal-right" style="margin-top:1.5rem;">
+          <div class="sidebar-card-title">Affiliations</div>
+          <p style="font-family:var(--ff-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-light);">
+            <a href="https://www.ffbridge.fr" target="_blank" rel="noopener noreferrer" style="color:var(--ink-light);">F&eacute;d&eacute;ration Fran&ccedil;aise de Bridge</a><br>
+            Comit&eacute; de Lorraine
+          </p>
+        </div>
+
+        <!-- Espace Membre -->
+        <div class="sidebar-card espace-membre reveal-right">
+          <div class="sidebar-card-title">Espace Membre</div>
+          <form class="espace-membre-form" action="https://www.ffbridge.fr/espace-membre" method="get" target="_blank" rel="noopener noreferrer" aria-label="Connexion &agrave; l'espace membre FFB">
+            <div class="form-group">
+              <label for="ffb-id">Identifiant FFB</label>
+              <input type="text" id="ffb-id" name="identifiant" placeholder="N&deg; de licence FFB" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+              <label for="ffb-pwd">Mot de passe</label>
+              <input type="password" id="ffb-pwd" name="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn-login" aria-label="Se connecter &agrave; l'espace membre">Se connecter &rarr;</button>
+            <span class="espace-membre-link"><a href="https://www.ffbridge.fr" target="_blank" rel="noopener noreferrer">ffbridge.fr</a> &middot; espace membre</span>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="editorial-divider" aria-hidden="true">
+  <span class="divider-suits">&#9824;&ensp;&#9829;&ensp;&#9830;&ensp;&#9827;</span>
+</div>
+
+<!-- ============================================
+     SECTION 4: L'ECOLE
+     ============================================ -->
+<section class="ecole section-pad" id="ecole">
+  <div class="container">
+    <div class="spread-header rule-bottom" style="padding-bottom:0.75rem; margin-bottom:3rem;">
+      <span class="spread-section-label">L'&Eacute;cole de Bridge</span>
+      <span class="spread-page-no mono">pp. 08&ndash;09</span>
+    </div>
+
+    <h2 class="ecole-headline reveal-up">Apprendre<em>le Bridge</em></h2>
+    <p class="ecole-sub reveal-up">Trois niveaux, un seul objectif&thinsp;: le plaisir de jouer, de comprendre et de progresser.</p>
+
+    <div class="levels-grid">
+      <div class="level-card reveal-up">
+        <div class="level-number">01</div>
+        <h3 class="level-title">Initiation</h3>
+        <p class="level-desc">Vous n'avez jamais touch&eacute; une carte de bridge&thinsp;? Parfait. Nos cours d'initiation vous guident pas &agrave; pas, dans une ambiance d&eacute;contract&eacute;e et bienveillante. Premier cours d'essai gratuit.</p>
+        <span class="level-detail">D&eacute;butants &middot; Cours collectifs</span>
+      </div>
+
+      <div class="level-card reveal-up">
+        <div class="level-number">02</div>
+        <h3 class="level-title">Perfectionnement</h3>
+        <p class="level-desc">Vous connaissez les bases et souhaitez affiner votre jeu&thinsp;? Ench&eacute;rissez avec plus de pr&eacute;cision, peaufinez vos entames et ma&icirc;trisez les strat&eacute;gies d&eacute;fensives.</p>
+        <span class="level-detail">Interm&eacute;diaire &middot; Ateliers th&eacute;matiques</span>
+      </div>
+
+      <div class="level-card reveal-up">
+        <div class="level-number">03</div>
+        <h3 class="level-title">Comp&eacute;tition</h3>
+        <p class="level-desc">Pr&eacute;parez-vous aux tournois r&eacute;gionaux et nationaux. Analyse de donnes, conventions avanc&eacute;es et pr&eacute;paration mentale pour les joueurs ambitieux.</p>
+        <span class="level-detail">Confirm&eacute; &middot; Coaching individualis&eacute;</span>
+      </div>
+    </div>
+
+    <div class="ecole-cta reveal-up">
+      <a href="mailto:contact@bcnj.fr" class="giant-cta" aria-label="Demander un premier cours d'essai gratuit par courriel">Premier cours gratuit &rarr;</a>
+      <p class="ecole-cta-note">Aucun engagement &middot; Tous niveaux &middot; Bonne humeur garantie</p>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="editorial-divider" aria-hidden="true">
+  <span class="divider-suits">&#9824;&ensp;&#9829;&ensp;&#9830;&ensp;&#9827;</span>
+</div>
+
+<!-- ============================================
+     SECTION 5: LE COIN DES CURIEUX
+     ============================================ -->
+<section class="curieux section-pad" id="curieux">
+  <div class="container">
+    <div class="spread-header rule-bottom" style="padding-bottom:0.75rem; margin-bottom:3rem;">
+      <span class="spread-section-label">Le Coin des Curieux</span>
+      <span class="spread-page-no mono">pp. 10&ndash;13</span>
+    </div>
+
+    <h2 class="section-headline reveal-up">Le Coin<br><em>des Curieux</em></h2>
+
+    <div class="dept-grid">
+      <!-- Featured: Nancy-Texas -->
+      <div class="dept-card featured reveal-up">
+        <div>
+          <div class="dept-label">Archive culturelle</div>
+          <h3 class="dept-title">Nancy-Texas</h3>
+          <p class="dept-desc">Le webzine l&eacute;gendaire du BCNJ. Dix num&eacute;ros publi&eacute;s entre 2000 et 2006, m&ecirc;lant analyse de donnes, humour, chroniques et la personnalit&eacute; inimitable du club. Un tr&eacute;sor &eacute;ditorial &agrave; red&eacute;couvrir.</p>
+          <div class="dept-meta">10 num&eacute;ros &middot; 2000&ndash;2006 &middot; Webzine du BCNJ</div>
+        </div>
+        <div class="dept-visual">
+          <div class="dept-issue-row">
+            <span class="dept-issue-no">10</span>
+            <span class="dept-issue-title">Dernier num&eacute;ro &mdash; 2006</span>
+          </div>
+          <div class="dept-issue-row">
+            <span class="dept-issue-no">07</span>
+            <span class="dept-issue-title">Sp&eacute;cial comp&eacute;tition</span>
+          </div>
+          <div class="dept-issue-row">
+            <span class="dept-issue-no">04</span>
+            <span class="dept-issue-title">Les classiques</span>
+          </div>
+          <div class="dept-issue-row">
+            <span class="dept-issue-no">01</span>
+            <span class="dept-issue-title">Premier num&eacute;ro &mdash; 2000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BCNJ Info -->
+      <div class="dept-card reveal-up">
+        <div class="dept-label">Bulletin du club</div>
+        <h3 class="dept-title">BCNJ Info</h3>
+        <p class="dept-desc">Le bulletin interne du club, retra&ccedil;ant la vie et les r&eacute;sultats de chaque saison. 19 num&eacute;ros de nouvelles, r&eacute;sultats et vie du club.</p>
+        <div class="dept-meta">19 num&eacute;ros publi&eacute;s</div>
+      </div>
+
+      <!-- Actualites -->
+      <div class="dept-card reveal-up">
+        <div class="dept-label">Actualit&eacute;s</div>
+        <h3 class="dept-title">En Ce Moment</h3>
+        <ul class="headline-list">
+          <li>Champion de France DN1 et DN2 par paires 2024&ndash;2025</li>
+          <li>Nouveau calendrier RealBridge</li>
+          <li>Inscriptions &eacute;cole de bridge ouvertes</li>
+          <li>E-MATCH/4 &mdash; 15 mai 2026</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="editorial-divider" aria-hidden="true">
+  <span class="divider-suits">&#9824;&ensp;&#9829;&ensp;&#9830;&ensp;&#9827;</span>
+</div>
+
+<!-- ============================================
+     SECTION 6: KIB
+     ============================================ -->
+<section class="kib-section section-pad" id="kib">
+  <div class="container">
+    <div class="spread-header rule-bottom" style="padding-bottom:0.75rem; margin-bottom:3rem;">
+      <span class="spread-section-label">Intelligence Artificielle</span>
+      <span class="spread-page-no mono">pp. 14&ndash;15</span>
+    </div>
+
+    <div class="kib-grid">
+      <div class="reveal-left">
+        <h2 class="kib-headline">Rencontrez<br>Kib&thinsp;&#9824;</h2>
+        <p class="kib-subtitle">Votre assistant bridge, disponible 24h/24. Appelez, posez vos questions, progressez.</p>
+
+        <div class="kib-phone">
+          <span class="phone-icon" aria-hidden="true">&#9742;</span>
+          <a href="tel:+33939241990" style="color: var(--ink);" aria-label="Appeler Kib au 09 39 24 19 90">09 39 24 19 90</a>
+        </div>
+
+        <ul class="kib-features" aria-label="Fonctionnalit&eacute;s de Kib">
+          <li><span class="feat-bullet" aria-hidden="true">&#9824;</span> Analyse de donnes en temps r&eacute;el</li>
+          <li><span class="feat-bullet" aria-hidden="true">&#9829;</span> Conseils d'ench&egrave;res personnalis&eacute;s</li>
+          <li><span class="feat-bullet" aria-hidden="true">&#9830;</span> R&eacute;vision des conventions</li>
+          <li><span class="feat-bullet" aria-hidden="true">&#9827;</span> Pr&eacute;paration aux tournois</li>
+          <li><span class="feat-bullet" aria-hidden="true">&#9824;</span> Disponible par t&eacute;l&eacute;phone, jour et nuit</li>
+          <li><span class="feat-bullet" aria-hidden="true">&#9829;</span> R&eacute;pond en fran&ccedil;ais, naturellement</li>
+        </ul>
+      </div>
+
+      <div class="kib-visual reveal-right">
+        <div class="kib-card" aria-label="Fiche de pr&eacute;sentation de Kib, l'assistant IA du BCNJ">
+          <div class="kib-card-icon" aria-hidden="true">&#9824;</div>
+          <div class="kib-card-label">Assistant IA</div>
+          <div class="kib-card-name">Kib</div>
+          <p class="kib-card-desc">Kib est l'assistant intelligent du BCNJ. Il r&eacute;pond &agrave; vos questions sur le bridge, analyse vos donnes et vous aide &agrave; progresser. Un compagnon de jeu infatigable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 7: COLOPHON / FOOTER
+     ============================================ -->
+<footer class="colophon" id="colophon" role="contentinfo">
+  <div class="container">
+    <div class="colophon-rule" aria-hidden="true"></div>
+    <div class="colophon-grid">
+      <!-- Redaction -->
+      <div class="reveal-up">
+        <div class="colophon-section-title">R&eacute;daction</div>
+        <p class="addr-display">Bridge Club de Nancy-Jarville</p>
+        <p>
+          B&acirc;t. T.S.B.<br>
+          1 rue du Coll&egrave;ge<br>
+          54180 Heillecourt<br>
+          France
+        </p>
+        <p style="margin-top:1rem;">
+          <a href="https://bcnj.lekibbitz.fr" target="_blank" rel="noopener noreferrer">bcnj.lekibbitz.fr</a>
+        </p>
+      </div>
+
+      <!-- Sommaire -->
+      <div class="reveal-up">
+        <div class="colophon-section-title">Sommaire</div>
+        <ul class="sommaire-list" role="list">
+          <li><a href="#cover">Couverture</a></li>
+          <li><a href="#spread">Ouverture</a></li>
+          <li><a href="#vie">La Vie du Club</a></li>
+          <li><a href="#ecole">L'&Eacute;cole</a></li>
+          <li><a href="#curieux">Le Coin des Curieux</a></li>
+          <li><a href="#kib">Kib</a></li>
+        </ul>
+      </div>
+
+      <!-- Affiliations -->
+      <div class="reveal-up">
+        <div class="colophon-section-title">Affiliations</div>
+        <div class="affiliations">
+          <a href="https://www.ffbridge.fr" target="_blank" rel="noopener noreferrer" aria-label="F&eacute;d&eacute;ration Fran&ccedil;aise de Bridge">
+            <img src="https://bcnj.lekibbitz.fr/images/ffb-logo.png" alt="F&eacute;d&eacute;ration Fran&ccedil;aise de Bridge" loading="lazy" width="100" height="50">
+          </a>
+          <img src="https://bcnj.lekibbitz.fr/images/bcnj-logo.png" alt="Bridge Club de Nancy-Jarville" loading="lazy" width="100" height="50">
+          <img src="https://bcnj.lekibbitz.fr/images/lorraine-logo.png" alt="Comit&eacute; de Lorraine" loading="lazy" width="100" height="50">
+        </div>
+      </div>
+    </div>
+
+    <div class="colophon-bottom">
+      <span class="colophon-copy">&copy; 2026 Bridge Club de Nancy-Jarville &mdash; Fond&eacute; en 1945</span>
+      <span class="colophon-suits" aria-hidden="true">&#9824; &#9829; &#9830; &#9827;</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     SCRIPTS
+     ============================================ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script>
+(function() {
+  'use strict';
+
+  /* -- Loader --------------------------------- */
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('loader').classList.add('hidden');
+      initAnimations();
+    }, 400);
+  });
+
+  /* -- Dark Mode ------------------------------ */
+  var themeToggle = document.getElementById('themeToggle');
+  var root = document.documentElement;
+
+  // Restore preference
+  if (localStorage.getItem('bcnj-dark') === '1') {
+    root.classList.add('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    root.classList.toggle('dark');
+    localStorage.setItem('bcnj-dark', root.classList.contains('dark') ? '1' : '0');
+  });
+
+  /* -- Mobile hamburger menu ------------------ */
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileOverlay = document.getElementById('mobileNavOverlay');
+  var mobilePanel = document.getElementById('mobileNavPanel');
+  var mobileLinks = mobilePanel ? mobilePanel.querySelectorAll('a') : [];
+
+  function openMobileNav() {
+    hamburgerBtn.classList.add('active');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    hamburgerBtn.setAttribute('aria-label', 'Fermer le menu de navigation');
+    mobileOverlay.classList.add('open');
+    mobileOverlay.setAttribute('aria-hidden', 'false');
+    mobilePanel.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileNav() {
+    hamburgerBtn.classList.remove('active');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerBtn.setAttribute('aria-label', 'Ouvrir le menu de navigation');
+    mobileOverlay.classList.remove('open');
+    mobileOverlay.setAttribute('aria-hidden', 'true');
+    mobilePanel.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function() {
+      var isOpen = hamburgerBtn.classList.contains('active');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
+    });
+  }
+
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMobileNav);
+  }
+
+  // Close mobile nav when a link is clicked
+  mobileLinks.forEach(function(link) {
+    link.addEventListener('click', closeMobileNav);
+  });
+
+  // Close mobile nav on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && hamburgerBtn && hamburgerBtn.classList.contains('active')) {
+      closeMobileNav();
+      hamburgerBtn.focus();
+    }
+  });
+
+  /* -- Nav visibility ------------------------- */
+  var magNav = document.getElementById('magNav');
+  var coverSection = document.getElementById('cover');
+
+  function checkNav() {
+    var coverBottom = coverSection.getBoundingClientRect().bottom;
+    if (coverBottom < 0) {
+      magNav.classList.add('visible');
+    } else {
+      magNav.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', checkNav, { passive: true });
+
+  /* -- Active nav link ------------------------ */
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.mag-nav-links a');
+  var mobileNavLinks = mobilePanel ? mobilePanel.querySelectorAll('a') : [];
+
+  function updateActiveLink() {
+    var scrollPos = window.scrollY + window.innerHeight * 0.3;
+    var current = '';
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollPos) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+    mobileNavLinks.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+
+  /* -- GSAP Animations ------------------------ */
+  function initAnimations() {
+    if (typeof gsap === 'undefined') {
+      // GSAP not loaded yet (deferred), wait and retry
+      setTimeout(initAnimations, 100);
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Cover title lines animate in with stagger
+    var coverLines = ['#coverLine1', '#coverLine2', '#coverLine3'];
+    coverLines.forEach(function(sel, i) {
+      gsap.fromTo(sel,
+        { y: '110%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1.2, delay: 0.3 + i * 0.2, ease: 'power4.out' }
+      );
+    });
+
+    // Cover sub & champion
+    gsap.fromTo('.cover-sub',
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 1, delay: 1.2, ease: 'power3.out' }
+    );
+    gsap.fromTo('.cover-champion',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, delay: 1.5, ease: 'power3.out' }
+    );
+    gsap.fromTo('.cover-scroll',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.6, delay: 2, ease: 'power2.out' }
+    );
+
+    // Scroll-triggered reveals
+    document.querySelectorAll('.reveal-up').forEach(function(el) {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    document.querySelectorAll('.reveal-left').forEach(function(el) {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    document.querySelectorAll('.reveal-right').forEach(function(el) {
+      gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    document.querySelectorAll('.reveal-fade').forEach(function(el) {
+      gsap.to(el, {
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // Level cards stagger
+    gsap.fromTo('.level-card', {
+      opacity: 0, y: 60
+    }, {
+      opacity: 1, y: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.levels-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Dept cards stagger
+    gsap.fromTo('.dept-card', {
+      opacity: 0, y: 50
+    }, {
+      opacity: 1, y: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.dept-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Kib card floating animation
+    gsap.to('.kib-card', {
+      y: -15,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    // Parallax on cover suits
+    gsap.to('.cover-suits', {
+      y: -80,
+      scrollTrigger: {
+        trigger: '.cover',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
+
+    // Schedule table rows
+    gsap.fromTo('.schedule-table tbody tr', {
+      opacity: 0, x: -30
+    }, {
+      opacity: 1, x: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.schedule-table',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Kib features stagger
+    gsap.fromTo('.kib-features li', {
+      opacity: 0, x: -20
+    }, {
+      opacity: 1, x: 0,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.kib-features',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Headline list stagger
+    gsap.fromTo('.headline-list li', {
+      opacity: 0, x: -20
+    }, {
+      opacity: 1, x: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.headline-list',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Colophon grid
+    gsap.fromTo('.colophon .reveal-up', {
+      opacity: 0, y: 40
+    }, {
+      opacity: 1, y: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.colophon',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Nancy-Texas issue rows
+    gsap.fromTo('.dept-issue-row', {
+      opacity: 0, x: 30
+    }, {
+      opacity: 1, x: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.dept-card.featured',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Masthead persons
+    gsap.fromTo('.masthead-person', {
+      opacity: 0, scale: 0.8
+    }, {
+      opacity: 1, scale: 1,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'back.out(1.4)',
+      scrollTrigger: {
+        trigger: '.masthead-grid',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  }
+
+})();
+</script>
+
+
+<!-- QR Code Vote -->
+<a href="https://vote.lekibbitz.fr" target="_blank" rel="noopener noreferrer" class="qr-vote-block" title="Votez pour votre design préféré">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAAAGOklEQVR4nO3dwY0bORBAUe/CUUz+sTmN3QymDsR3kZr3zlZL6pE/CHSB/PULAAAAAAAAAADe98/0D76+vv77Gx9ky58/f769B6ff//T60+snt3/+7d/Xp3+/2vT9//1bHwT4eQQGyAgMkBEYICMwQEZggIzAAJnfpxc4ndOo1XMgp26fwzl9/3rO5/T9t336/x8rGCAjMEBGYICMwAAZgQEyAgNkBAbIHM/BTOo5hNvnKLbnaGrb+6HUczrbXv//YwUDZAQGyAgMkBEYICMwQEZggIzAAJl8DuZ19X4qr597dPscyvaczk9nBQNkBAbICAyQERggIzBARmCAjMAAGXMwg+39YG6f49jej2b778P3rGCAjMAAGYEBMgIDZAQGyAgMkBEYIJPPwbw+Z7B97tL0/tvnLtX73Zza3m/m9uvXrGCAjMAAGYEBMgIDZAQGyAgMkBEYIHM8B7O9H0ntdM7D6z/79ac+/f+PFQyQERggIzBARmCAjMAAGYEBMgIDZJ7ea+JvuH0/kdvPBXr9/r2+H8s2KxggIzBARmCAjMAAGYEBMgIDZAQGyDz/jH97DuT2/UZu/37brz+1/flvf70VDJARGCAjMEBGYICMwAAZgQEyAgNkxnORtp+jn9reb2Wyff9enzM5ff327/v2c5FO778VDJARGCAjMEBGYICMwAAZgQEyAgNkxmfcrz+nv33O4fZzibbnbG6//uT134c5GOBaAgNkBAbICAyQERggIzBARmCAzPEz9u05ge3rn77/5PU5ids//+T2Oanbv58VDJARGCAjMEBGYICMwAAZgQEyAgNkxnORXrc9ZzA5vf7t+/VMtv8+9fVv/341KxggIzBARmCAjMAAGYEBMgIDZAQGyByfi7Q9RzK5fT+OU9vn/kxu3+9lYj8f+8EAlxIYICMwQEZggIzAABmBATICA2TyvSLqOYDt/UBuf/3E/Xt7P5bb54CsYICMwAAZgQEyAgNkBAbICAyQERggc/yM/vbn8JPXP/9ke7+a2vb9nbw+xzOxHwywRmCAjMAAGYEBMgIDZAQGyAgMkPk9/YPX5yi25wAm23MSk+05jO05qO37P9nez2diBQNkBAbICAyQERggIzBARmCAjMAAmfEZ/fYcw/b7T16fE5p8+n4lt//9bt/vZmIFA2QEBsgIDJARGCAjMEBGYICMwACZcT+Y2+dYpuvX+3Vs35+f7vX9aCbbc0KnrGCAjMAAGYEBMgIDZAQGyAgMkBEYIHP8DPz2c3nq62/P+by+38nk9jmj1/9+9ee3ggEyAgNkBAbICAyQERggIzBARmCAzLgfzLbb51w+fU6mfv227Tmb2+dcTlnBABmBATICA2QEBsgIDJARGCAjMEBmnIO5fc5he47j9jmZU6/vJ3Nq++9bcy4S8CyBATICA2QEBsgIDJARGCAjMEBmfAb+6XMAp26fQ9ne72R7P5/b3T6HdXp/rWCAjMAAGYEBMgIDZAQGyAgMkBEYIJOfi7Q9J7L9/pPp89VzRq/fv9r2/Tm1fX+tYICMwAAZgQEyAgNkBAbICAyQERggc7wfTO32/URu349jez+Xyfbv63Xbv9+JFQyQERggIzBARmCAjMAAGYEBMgIDZK7ey+IG9gP53vYcxvYc0fac0Pa5ZNP7W8EAGYEBMgIDZAQGyAgMkBEYICMwQGY8F+nT9+s4PZeotj3HcPu5S9tzIJPtOZrtOSIrGCAjMEBGYICMwAAZgQEyAgNkBAbIjHMwk+05kcntcxyfbnu/lEk9R3P7969ZwQAZgQEyAgNkBAbICAyQERggIzBA5ngOZrK9n0l9/dvnJCa3z1Hcbvv+1ec+nc6BWcEAGYEBMgIDZAQGyAgMkBEYICMwQCafg/nptud0TtVzEqfvP9k+d+nTz52aWMEAGYEBMgIDZAQGyAgMkBEYICMwQMYcTGx7TuTT97M5dXr/tudsavaDAa4lMEBGYICMwAAZgQEyAgNkBAbI5HMwr89JnNqec9iek6lt73dSzxG9PsdkBQNkBAbICAyQERggIzBARmCAjMAAmfEZ+O1zEKe2zxWqz92ZbM/J/PTrb//+Js5FAq4lMEBGYICMwAAZgQEyAgNkBAYAAAAAAAAAAAC+8T9dFtuj5BdyyQAAAABJRU5ErkJggg==" alt="QR Code — vote.lekibbitz.fr">
+  <p>Votez !</p>
+  <p class="qr-label">vote.lekibbitz.fr</p>
+</a>
+</body>
+</html>
