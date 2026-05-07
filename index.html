@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCNJ — La Finale : Choisissez votre design</title>
+<meta name="description" content="Deux designs finalistes pour le site du Bridge Club de Nancy-Jarville. Votez pour votre préféré.">
+<meta property="og:title" content="BCNJ — Votez pour le nouveau design">
+<meta property="og:description" content="La Grande Donne vs L'Édition Spéciale. Deux visions, un seul site. Votre voix compte.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0a0a;--dark:#111;--card:#161616;--border:#222;
+  --gold:#c9a74e;--gold-dim:#8a7234;--ivory:#f5ecd5;
+  --green-felt:#1a4a2e;--cream:#faf6ee;
+  --a-accent:#c9a74e;--b-accent:#8b6914;
+  --text:#e8e8e8;--muted:#777;--dim:#444;
+  --font-display:'Cinzel',serif;--font-body:'Space Grotesk',sans-serif;
+  --font-editorial:'Playfair Display',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--black);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+
+/* === LOADING SCREEN === */
+.loading{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+.loading.done{opacity:0;visibility:hidden}
+.loading .suits{font-size:2.5rem;letter-spacing:1rem;margin-bottom:1rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.loading .suits span{display:inline-block;animation:dealIn .5s ease-out backwards}
+.loading .suits span:nth-child(1){animation-delay:.1s;color:#000}
+.loading .suits span:nth-child(2){animation-delay:.25s;color:#e74c3c}
+.loading .suits span:nth-child(3){animation-delay:.4s;color:#e74c3c}
+.loading .suits span:nth-child(4){animation-delay:.55s;color:#000}
+.loading p{font-family:var(--font-display);color:var(--gold);letter-spacing:.15em;font-size:.85rem;text-transform:uppercase;opacity:0;animation:fadeUp .6s .7s forwards}
+@keyframes dealIn{0%{opacity:0;transform:translateY(-30px) rotate(-15deg)}100%{opacity:1;transform:none}}
+@keyframes fadeUp{to{opacity:1}}
+
+/* === HERO === */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,167,78,.08) 0%,transparent 60%)}
+.hero-badge{font-family:var(--font-display);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:.5rem 1.5rem;border-radius:2rem;margin-bottom:2rem;opacity:0;animation:fadeUp .8s 1.2s forwards}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1rem;opacity:0;animation:fadeUp .8s 1.4s forwards}
+.hero h1 .gold{color:var(--gold)}
+.hero h1 .vs{display:block;font-size:.5em;color:var(--muted);font-weight:400;letter-spacing:.3em;margin:.3em 0}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:35rem;line-height:1.7;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s 1.6s forwards}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s 1.8s forwards}
+.hero-cta a{font-family:var(--font-display);text-decoration:none;padding:.9rem 2.2rem;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.hero-cta a:hover{transform:translateY(-2px)}
+.cta-gold{background:var(--gold);color:var(--black);box-shadow:0 4px 20px rgba(201,167,78,.3)}
+.cta-gold:hover{box-shadow:0 8px 30px rgba(201,167,78,.4)}
+.cta-ghost{color:var(--gold);border:1px solid var(--gold-dim)}
+.cta-ghost:hover{background:rgba(201,167,78,.08)}
+
+/* Decorative compass */
+.hero-compass{position:absolute;width:500px;height:500px;opacity:.04;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%)}
+.hero-compass .ring{position:absolute;inset:0;border:1px solid var(--gold);border-radius:50%;animation:compassSpin 60s linear infinite}
+.hero-compass .ring:nth-child(2){inset:40px;animation-direction:reverse;animation-duration:45s}
+.hero-compass .ring:nth-child(3){inset:80px;animation-duration:90s}
+@keyframes compassSpin{to{transform:rotate(360deg)}}
+
+/* === DUEL SECTION === */
+.duel{padding:4rem 2rem 6rem;max-width:1300px;margin:0 auto}
+.duel-header{text-align:center;margin-bottom:3rem}
+.duel-header h2{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,2rem);color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.duel-header p{color:var(--muted);font-size:1rem}
+
+.duel-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:900px){.duel-grid{grid-template-columns:1fr;gap:3rem}}
+
+/* === CANDIDATE CARDS === */
+.candidate{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.candidate:hover{border-color:var(--gold-dim);box-shadow:0 8px 40px rgba(201,167,78,.08)}
+.candidate.voted{border-color:var(--gold);box-shadow:0 0 30px rgba(201,167,78,.15)}
+
+/* Mini preview */
+.preview{height:280px;position:relative;overflow:hidden;cursor:pointer}
+.preview .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;z-index:2}
+.preview:hover .overlay{opacity:1}
+.overlay span{font-family:var(--font-display);color:#fff;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.5rem;border:1px solid rgba(255,255,255,.4);border-radius:4px;backdrop-filter:blur(4px)}
+
+/* Preview A: La Grande Donne — dark, cinematic, compass */
+.preview-a{background:var(--black);position:relative}
+.preview-a .felt{position:absolute;inset:0;background:repeating-conic-gradient(var(--green-felt) 0% 25%,#1b4f30 0% 50%) 0 0/3px 3px;opacity:.4}
+.preview-a .compass-mini{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px}
+.preview-a .compass-mini .r{position:absolute;inset:0;border:1px solid var(--gold);border-radius:50%;opacity:.6}
+.preview-a .compass-mini .r:nth-child(2){inset:15px}
+.preview-a .compass-mini .r:nth-child(3){inset:30px}
+.preview-a .dirs{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:.6rem;color:var(--gold);letter-spacing:.1em}
+.preview-a .dir{position:absolute;transform:translate(-50%,-50%)}
+.preview-a .dir-n{top:-50px;left:0}
+.preview-a .dir-s{top:50px;left:0}
+.preview-a .dir-e{top:0;left:50px}
+.preview-a .dir-o{top:0;left:-50px}
+.preview-a .p-title{position:absolute;bottom:2rem;left:0;right:0;text-align:center;font-family:var(--font-display);font-size:1.2rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;z-index:1}
+.preview-a .p-sub{position:absolute;bottom:1rem;left:0;right:0;text-align:center;font-family:var(--font-body);font-size:.65rem;color:var(--muted);letter-spacing:.1em;z-index:1}
+.preview-a .bidding{position:absolute;top:1rem;right:1rem;display:flex;flex-direction:column;gap:4px;z-index:1}
+.preview-a .bid{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;border:1px solid rgba(201,167,78,.3);background:rgba(0,0,0,.6)}
+.preview-a .bid.s{color:#556}
+.preview-a .bid.h{color:#e74c3c}
+.preview-a .bid.d{color:#e74c3c}
+.preview-a .bid.c{color:#556}
+.preview-a .cards{position:absolute;bottom:4rem;left:50%;transform:translateX(-50%);display:flex;gap:0;z-index:1}
+.preview-a .card-mini{width:32px;height:46px;background:#faf6ee;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.4);transform-origin:bottom center}
+.preview-a .card-mini:nth-child(1){transform:rotate(-12deg) translateX(8px);color:#000}
+.preview-a .card-mini:nth-child(2){transform:rotate(-4deg) translateX(3px);color:#e74c3c}
+.preview-a .card-mini:nth-child(3){transform:rotate(4deg) translateX(-3px);color:#e74c3c}
+.preview-a .card-mini:nth-child(4){transform:rotate(12deg) translateX(-8px);color:#000}
+
+/* Preview B: L'Édition Spéciale — editorial, cream, magazine */
+.preview-b{background:var(--cream);position:relative;overflow:hidden}
+.preview-b .masthead{padding:1rem 1.5rem .5rem;border-bottom:3px double #1a1a1a;display:flex;justify-content:space-between;align-items:baseline;position:relative;z-index:1}
+.preview-b .masthead-title{font-family:var(--font-editorial);font-size:1.4rem;color:#1a1a1a;font-weight:700;letter-spacing:.02em}
+.preview-b .masthead-date{font-size:.6rem;color:#888;letter-spacing:.1em;text-transform:uppercase;font-family:var(--font-body)}
+.preview-b .masthead-rule{display:block;height:1px;background:#bbb;margin-top:.3rem}
+.preview-b .ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100% - 55px);position:relative;z-index:1}
+.preview-b .ed-col{padding:.8rem 1.2rem;position:relative}
+.preview-b .ed-col:first-child{border-right:1px solid #ccc}
+.preview-b .ed-num{font-size:.5rem;color:#aaa;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem;font-family:var(--font-body)}
+.preview-b .ed-h{font-family:var(--font-editorial);font-size:.95rem;color:#1a1a1a;line-height:1.25;margin-bottom:.4rem;font-weight:700}
+.preview-b .ed-dropcap{float:left;font-family:var(--font-editorial);font-size:2.2rem;line-height:.85;color:#1a1a1a;margin-right:.25rem;margin-top:.1rem;font-weight:700}
+.preview-b .ed-line{height:3px;width:50%;background:linear-gradient(90deg,#1a1a1a,transparent);margin-bottom:.5rem}
+.preview-b .ed-text{display:flex;flex-direction:column;gap:4px}
+.preview-b .ed-text span{display:block;height:3px;background:#c8c4bc;border-radius:1px}
+.preview-b .ed-text span:nth-child(odd){background:#b5b0a5}
+.preview-b .ed-text span:last-child{width:65%}
+.preview-b .ed-pull{font-family:var(--font-editorial);font-style:italic;font-size:.7rem;color:#444;border-left:3px solid var(--gold);padding-left:.6rem;margin-top:.6rem;line-height:1.5}
+.preview-b .ed-badge{position:absolute;top:.6rem;right:.6rem;font-size:.5rem;color:#fff;background:var(--gold);padding:3px 8px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;font-family:var(--font-body)}
+.preview-b .ed-photo{background:linear-gradient(135deg,#d4cfc5 0%,#e8e3d9 50%,#c9c4ba 100%);border-radius:3px;height:40px;margin:.4rem 0;position:relative;overflow:hidden}
+.preview-b .ed-photo::after{content:'♠ ♥ ♦ ♣';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.65rem;color:rgba(0,0,0,.15);letter-spacing:.3em;white-space:nowrap}
+.preview-b .ed-footer{position:absolute;bottom:0;left:0;right:0;padding:.3rem 1.2rem;background:rgba(26,26,26,.9);display:flex;justify-content:space-between;align-items:center;z-index:2}
+.preview-b .ed-footer span{font-size:.5rem;color:#faf6ee;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-body)}
+.preview-b .ed-footer .ed-f-gold{color:var(--gold)}
+
+/* Card body */
+.card-body{padding:1.5rem}
+.card-name{font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:.25rem}
+.card-name.a-name{color:var(--gold)}
+.card-name.b-name{color:var(--ivory)}
+.card-tagline{color:var(--muted);font-size:.9rem;margin-bottom:1.25rem;line-height:1.5}
+.card-features{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.card-features li{font-size:.82rem;color:var(--text);display:flex;align-items:flex-start;gap:.5rem;line-height:1.4}
+.card-features li::before{content:'♠';color:var(--gold);font-size:.7rem;margin-top:2px;flex-shrink:0}
+
+/* Vote button */
+.vote-btn{width:100%;padding:1rem;border:2px solid var(--gold-dim);background:transparent;color:var(--gold);font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.vote-btn:hover{background:rgba(201,167,78,.1);border-color:var(--gold)}
+.vote-btn.selected{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.vote-btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:rippleAnim .6s ease-out}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+
+/* View full link */
+.view-full{display:block;text-align:center;margin-top:.75rem;font-size:.8rem;color:var(--muted);text-decoration:none;letter-spacing:.05em;transition:color .2s}
+.view-full:hover{color:var(--gold)}
+
+/* === QR CODE === */
+.qr-block{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.qr-block img{width:120px;height:120px;border-radius:8px;padding:10px;background:rgba(201,167,78,.08);border:1px solid var(--gold-dim)}
+.qr-block p{font-size:.7rem;color:var(--muted);letter-spacing:.05em;text-align:center;line-height:1.4}
+.qr-block .qr-url{font-family:var(--font-body);color:var(--gold);font-weight:600;font-size:.75rem}
+
+/* === RESULTS === */
+.results{padding:3rem 2rem 4rem;max-width:700px;margin:0 auto;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.results.show{opacity:1;transform:none}
+.results h3{font-family:var(--font-display);font-size:1.3rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.results .subtitle{color:var(--muted);font-size:.85rem;margin-bottom:2rem}
+.result-bars{display:flex;flex-direction:column;gap:1.5rem}
+.result-item{text-align:left}
+.result-label{display:flex;justify-content:space-between;margin-bottom:.4rem;font-size:.85rem;font-weight:600}
+.result-label .name{color:var(--text)}
+.result-label .pct{color:var(--gold);font-weight:700}
+.result-track{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.result-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.4,0,.2,1);width:0}
+.result-fill.fill-a{background:linear-gradient(90deg,var(--green-felt),var(--gold))}
+.result-fill.fill-b{background:linear-gradient(90deg,var(--gold),var(--cream))}
+.total-votes{margin-top:1.5rem;font-size:.8rem;color:var(--dim)}
+
+/* === VS DIVIDER (desktop) === */
+.vs-divider{display:none}
+@media(min-width:901px){
+  .vs-divider{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10;width:60px;height:60px;border-radius:50%;background:var(--black);border:2px solid var(--gold-dim);align-items:center;justify-content:center;font-family:var(--font-display);font-size:.85rem;color:var(--gold);letter-spacing:.05em}
+  .duel-grid{position:relative}
+}
+
+/* === FOOTER === */
+.footer{text-align:center;padding:2rem;border-top:1px solid var(--border);margin-top:2rem}
+.footer p{font-size:.75rem;color:var(--dim);line-height:1.6}
+.footer a{color:var(--gold-dim);text-decoration:none}
+.footer a:hover{color:var(--gold)}
+
+/* === SCROLL ANIMATIONS === */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.fade-in.visible{opacity:1;transform:none}
+
+/* === CONFETTI === */
+.confetti-piece{position:fixed;width:8px;height:8px;z-index:9998;pointer-events:none;animation:confettiFall 2s ease-in forwards}
+@keyframes confettiFall{
+  0%{opacity:1;transform:translateY(0) rotate(0deg)}
+  100%{opacity:0;transform:translateY(100vh) rotate(720deg)}
+}
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loading" id="loading">
+  <div class="suits"><span>♠</span><span>♥</span><span>♦</span><span>♣</span></div>
+  <p>La Finale</p>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-compass">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+  </div>
+  <div class="hero-badge">Bridge Club de Nancy-Jarville · Depuis 1945</div>
+  <h1>
+    <span class="gold">La Grande Donne</span>
+    <span class="vs">— contre —</span>
+    L'&Eacute;dition Sp&eacute;ciale
+  </h1>
+  <p class="hero-sub">
+    Deux visions. Un seul site. Explorez les finalistes, comparez,
+    et&nbsp;votez pour le design qui repr&eacute;sentera le club.
+  </p>
+  <div class="hero-cta">
+    <a href="#duel" class="cta-gold">D&eacute;couvrir &amp; Voter ♠</a>
+    <a href="#results" class="cta-ghost">Voir les r&eacute;sultats</a>
+  </div>
+  <div class="qr-block" style="opacity:0;animation:fadeUp .8s 2s forwards;border-top:none;margin-top:2.5rem">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAAAGQElEQVR4nO3dwY0jNxBA0bWxOTkL3x2h787CUdkZTB2Iv0Vq3juvWlKP9oNAF8gfPwAAAAAAAAAA4H2/Tf/g37///O9XfJAtf/z1z5f34PT7n15/ev3k9s+//fv69O9Xm77/77/qgwDfj8AAGYEBMgIDZAQGyAgMkBEYIPPz9AKncxq1eg7k1O1zOKfvX8/5nL7/tk///2MFA2QEBsgIDJARGCAjMEBGYICMwACZ4zmYST2HcPscxfYcTW17P5R6Tmfb6/9/rGCAjMAAGYEBMgIDZAQGyAgMkBEYIJPPwbyu3k/l9XOPbp9D2Z7T+e6sYICMwAAZgQEyAgNkBAbICAyQERggYw5msL0fzO1zHNv70Wz/ffiaFQyQERggIzBARmCAjMAAGYEBMgIDZPI5mNfnDLbPXZref/vcpXq/m1Pb+83cfv2aFQyQERggIzBARmCAjMAAGYEBMgIDZI7nYLb3I6mdznl4/We//tSn//+xggEyAgNkBAbICAyQERggIzBARmCAzNN7TfwKt+8ncvu5QK/fv9f3Y9lmBQNkBAbICAyQERggIzBARmCAjMAAmeef8W/Pgdy+38jt32/79ae2P//tr7eCATICA2QEBsgIDJARGCAjMEBGYIDMeC7S9nP0U9v7rUy279/rcyanr9/+fd9+LtLp/beCATICA2QEBsgIDJARGCAjMEBGYIDM+Iz79ef0t8853H4u0facze3Xn7z++zAHA1xLYICMwAAZgQEyAgNkBAbICAyQOX7Gvj0nsH390/efvD4ncfvnn9w+J3X797OCATICA2QEBsgIDJARGCAjMEBGYIDMeC7S67bnDCan1799v57J9t+nvv7t369mBQNkBAbICAyQERggIzBARmCAjMAAmeNzkbbnSCa378dxavvcn8nt+71M7OdjPxjgUgIDZAQGyAgMkBEYICMwQEZggEy+V0Q9B7C9H8jtr5+4f2/vx3L7HJAVDJARGCAjMEBGYICMwAAZgQEyAgNkjp/R3/4cfvL6559s71dT276/k9fneCb2gwHWCAyQERggIzBARmCAjMAAGYEBMj+nf/D6HMX2HMBke05isj2HsT0HtX3/J9v7+UysYICMwAAZgQEyAgNkBAbICAyQERggMz6j355j2H7/yetzQpNP36/k9r/f7fvdTKxggIzAABmBATICA2QEBsgIDJARGCAz7gdz+xzLdP16v47t+/Pdvb4fzWR7TuiUFQyQERggIzBARmCAjMAAGYEBMgIDZI6fgd9+Lk99/e05n9f3O5ncPmf0+t+v/vxWMEBGYICMwAAZgQEyAgNkBAbICAyQGfeD2Xb7nMunz8nUr9+2PWdz+5zLKSsYICMwQEZggIzAABmBATICA2QEBsiMczC3zzlsz3HcPidz6vX9ZE5t/31rzkUCniUwQEZggIzAABmBATICA2QEBsiMz8A/fQ7g1O1zKNv7nWzv53O72+ewTu+vFQyQERggIzBARmCAjMAAGYEBMgIDZPJzkbbnRLbffzJ9vnrO6PX7V9u+P6e2768VDJARGCAjMEBGYICMwAAZgQEyAgNkjveDqd2+n8jt+3Fs7+cy2f59vW779zuxggEyAgNkBAbICAyQERggIzBARmCAzNV7WdzAfiBf257D2J4j2p4T2j6XbHp/KxggIzBARmCAjMAAGYEBMgIDZAQGyIznIn36fh2n5xLVtucYbj93aXsOZLI9R7M9R2QFA2QEBsgIDJARGCAjMEBGYICMwACZcQ5msj0nMrl9juPTbe+XMqnnaG7//jUrGCAjMEBGYICMwAAZgQEyAgNkBAbIHM/BTLb3M6mvf/ucxOT2OYrbbd+/+tyn0zkwKxggIzBARmCAjMAAGYEBMgIDZAQGyORzMN/d9pzOqXpO4vT9J9vnLn36uVMTKxggIzBARmCAjMAAGYEBMgIDZAQGyJiDiW3PiXz6fjanTu/f9pxNzX4wwLUEBsgIDJARGCAjMEBGYICMwACZfA7m9TmJU9tzDttzMrXt/U7qOaLX55isYICMwAAZgQEyAgNkBAbICAyQERggMz4Dv30O4tT2uUL1uTuT7TmZ73797d/fxLlIwLUEBsgIDJARGCAjMEBGYICMwAAAAAAAAAAAAMAX/gf7Et0TlZslTQAAAABJRU5ErkJggg==" alt="QR Code — vote.lekibbitz.fr">
+    <p>Scannez pour voter<br><span class="qr-url">vote.lekibbitz.fr</span></p>
+  </div>
+</section>
+
+<!-- Duel -->
+<section class="duel" id="duel">
+  <div class="duel-header fade-in">
+    <h2>Les Deux Finalistes</h2>
+    <p>Cliquez sur l'aper&ccedil;u pour voir la version compl&egrave;te. Votez en bas de chaque carte.</p>
+  </div>
+
+  <div class="duel-grid">
+    <div class="vs-divider">VS</div>
+
+    <!-- Candidate A: La Grande Donne -->
+    <article class="candidate fade-in" id="candidateA">
+      <a href="https://lekibbitz.github.io/bcnj-vote/la-grande-donne.html" target="_blank" rel="noopener noreferrer" class="preview preview-a" aria-label="Voir La Grande Donne en entier">
+        <div class="felt"></div>
+        <div class="compass-mini">
+          <div class="r"></div><div class="r"></div><div class="r"></div>
+        </div>
+        <div class="dirs">
+          <span class="dir dir-n">N</span>
+          <span class="dir dir-s">S</span>
+          <span class="dir dir-e">E</span>
+          <span class="dir dir-o">O</span>
+        </div>
+        <div class="bidding">
+          <span class="bid s">♠</span>
+          <span class="bid h">♥</span>
+          <span class="bid d">♦</span>
+          <span class="bid c">♣</span>
+        </div>
+        <div class="cards">
+          <div class="card-mini">A♠</div>
+          <div class="card-mini">K♥</div>
+          <div class="card-mini">Q♦</div>
+          <div class="card-mini">J♣</div>
+        </div>
+        <div class="p-title">La Grande Donne</div>
+        <div class="p-sub">Cin&eacute;matique · Immersive · Dramatique</div>
+        <div class="overlay"><span>Voir le site complet ↗</span></div>
+      </a>
+      <div class="card-body">
+        <h3 class="card-name a-name">La Grande Donne</h3>
+        <p class="card-tagline">Le tapis vert, le sc&eacute;nario de la donne et le frisson du grand jeu — r&eacute;unis en une exp&eacute;rience cin&eacute;matique.</p>
+        <ul class="card-features">
+          <li>Rose des vents anim&eacute;e avec cartes en orbite (N/S/E/O)</li>
+          <li>Bo&icirc;te d'ench&egrave;res lat&eacute;rale ♠♥♦♣ pour la navigation</li>
+          <li>Distribution de cartes anim&eacute;e au chargement (GSAP)</li>
+          <li>7 chapitres cin&eacute;matiques avec interstitiels dramatiques</li>
+          <li>Timeline 1945→2025 avec remplissage dor&eacute; au scroll</li>
+          <li>Main interactive de 13 cartes dans le Coin des Curieux</li>
+          <li>Canvas g&eacute;n&eacute;ratif — particules de symboles flottants</li>
+          <li>Texture tapis vert en fond + palette or &amp; ivoire</li>
+        </ul>
+        <button class="vote-btn" data-candidate="a" onclick="castVote('a')">
+          Voter La Grande Donne ♠
+        </button>
+        <a class="view-full" href="https://lekibbitz.github.io/bcnj-vote/la-grande-donne.html" target="_blank" rel="noopener noreferrer">↗ Voir la version compl&egrave;te</a>
+      </div>
+    </article>
+
+    <!-- Candidate B: L'Édition Spéciale -->
+    <article class="candidate fade-in" id="candidateB">
+      <a href="https://lekibbitz.github.io/bcnj-vote/edition-speciale.html" target="_blank" rel="noopener noreferrer" class="preview preview-b" aria-label="Voir L'Édition Spéciale en entier">
+        <div class="masthead">
+          <span class="masthead-title">L'&Eacute;dition Sp&eacute;ciale</span>
+          <span class="masthead-date">Printemps 2026</span>
+          <span class="masthead-rule"></span>
+        </div>
+        <div class="ed-grid">
+          <div class="ed-col">
+            <div class="ed-num">pp. 02-03 · &agrave; la une</div>
+            <div class="ed-h">Champions de France</div>
+            <div class="ed-line"></div>
+            <span class="ed-dropcap">L</span>
+            <div class="ed-text"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="ed-pull">&laquo;&nbsp;Le bridge, c'est la pens&eacute;e en mouvement.&nbsp;&raquo;</div>
+          </div>
+          <div class="ed-col">
+            <div class="ed-num">pp. 04-07 · agenda</div>
+            <div class="ed-h">Le Calendrier</div>
+            <div class="ed-line" style="width:40%"></div>
+            <div class="ed-photo"></div>
+            <div class="ed-text"><span></span><span></span><span></span></div>
+            <div class="ed-badge">Nouveau</div>
+          </div>
+        </div>
+        <div class="ed-footer">
+          <span>Bridge Club de Nancy-Jarville</span>
+          <span class="ed-f-gold">Depuis 1945</span>
+        </div>
+        <div class="overlay"><span>Voir le site complet ↗</span></div>
+      </a>
+      <div class="card-body">
+        <h3 class="card-name b-name">L'&Eacute;dition Sp&eacute;ciale</h3>
+        <p class="card-tagline">&Eacute;l&eacute;gance &eacute;ditoriale d'un magazine de prestige — typographie raffin&eacute;e, maquette a&eacute;r&eacute;e, dark mode.</p>
+        <ul class="card-features">
+          <li>Typographie Playfair Display + Libre Baskerville</li>
+          <li>Maquette magazine avec spreads et num&eacute;ros de pages</li>
+          <li>Mode sombre avec persistance (toggle &eacute;l&eacute;gant)</li>
+          <li>Citations en exergue avec lettrines (drop caps)</li>
+          <li>57 accents fran&ccedil;ais restaur&eacute;s pour une typographie impeccable</li>
+          <li>Formulaire de connexion FFB (identifiant + mot de passe)</li>
+          <li>17 attributs ARIA pour l'accessibilit&eacute;</li>
+          <li>Schema.org JSON-LD + m&eacute;ta Open Graph</li>
+        </ul>
+        <button class="vote-btn" data-candidate="b" onclick="castVote('b')">
+          Voter L'&Eacute;dition Sp&eacute;ciale ✦
+        </button>
+        <a class="view-full" href="https://lekibbitz.github.io/bcnj-vote/edition-speciale.html" target="_blank" rel="noopener noreferrer">↗ Voir la version compl&egrave;te</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="results" id="results">
+  <h3>R&eacute;sultats en direct</h3>
+  <p class="subtitle">Les votes sont enregistr&eacute;s localement — chaque navigateur compte une fois.</p>
+  <div class="result-bars">
+    <div class="result-item">
+      <div class="result-label">
+        <span class="name">♠ La Grande Donne</span>
+        <span class="pct" id="pctA">0 %</span>
+      </div>
+      <div class="result-track">
+        <div class="result-fill fill-a" id="fillA"></div>
+      </div>
+    </div>
+    <div class="result-item">
+      <div class="result-label">
+        <span class="name">✦ L'&Eacute;dition Sp&eacute;ciale</span>
+        <span class="pct" id="pctB">0 %</span>
+      </div>
+      <div class="result-track">
+        <div class="result-fill fill-b" id="fillB"></div>
+      </div>
+    </div>
+  </div>
+  <p class="total-votes" id="totalVotes">Aucun vote pour l'instant</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Bridge Club de Nancy-Jarville &middot; Fond&eacute; en 1945<br>
+  <a href="https://bcnj.lekibbitz.fr" target="_blank" rel="noopener noreferrer">bcnj.lekibbitz.fr</a></p>
+</footer>
+
+<script>
+// ============ LOADING ============
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loading').classList.add('done'), 900);
+});
+
+// ============ SCROLL ANIMATIONS ============
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ============ VOTES ============
+const STORAGE_KEY = 'bcnj_finale_vote';
+const RESULTS_KEY = 'bcnj_finale_results';
+
+function getMyVote() {
+  return localStorage.getItem(STORAGE_KEY) || null;
+}
+
+function getResults() {
+  try { return JSON.parse(localStorage.getItem(RESULTS_KEY)) || { a: 0, b: 0 }; }
+  catch { return { a: 0, b: 0 }; }
+}
+
+function saveResults(r) {
+  localStorage.setItem(RESULTS_KEY, JSON.stringify(r));
+}
+
+function castVote(candidate) {
+  const prev = getMyVote();
+  if (prev === candidate) return; // already voted this one
+
+  const results = getResults();
+
+  // Remove previous vote if switching
+  if (prev && results[prev] > 0) results[prev]--;
+
+  results[candidate]++;
+  localStorage.setItem(STORAGE_KEY, candidate);
+  saveResults(results);
+
+  // UI feedback
+  updateVoteUI(candidate);
+  confetti(candidate === 'a' ? '#c9a74e' : '#faf6ee');
+  renderResults();
+
+  // Scroll to results
+  setTimeout(() => {
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }, 600);
+}
+
+function updateVoteUI(selected) {
+  document.querySelectorAll('.vote-btn').forEach(btn => {
+    const c = btn.dataset.candidate;
+    if (c === selected) {
+      btn.classList.add('selected');
+      btn.textContent = c === 'a' ? '✓ Votre choix : La Grande Donne' : '✓ Votre choix : L\'Édition Spéciale';
+    } else {
+      btn.classList.remove('selected');
+      btn.textContent = c === 'a' ? 'Voter La Grande Donne ♠' : 'Voter L\'Édition Spéciale ✦';
+    }
+  });
+
+  document.querySelectorAll('.candidate').forEach(card => {
+    card.classList.remove('voted');
+  });
+  const cardId = selected === 'a' ? 'candidateA' : 'candidateB';
+  document.getElementById(cardId).classList.add('voted');
+}
+
+function renderResults() {
+  const r = getResults();
+  const total = r.a + r.b;
+  const pA = total > 0 ? Math.round((r.a / total) * 100) : 0;
+  const pB = total > 0 ? Math.round((r.b / total) * 100) : 0;
+
+  document.getElementById('pctA').textContent = pA + ' %';
+  document.getElementById('pctB').textContent = pB + ' %';
+
+  // Animate bars
+  requestAnimationFrame(() => {
+    document.getElementById('fillA').style.width = pA + '%';
+    document.getElementById('fillB').style.width = pB + '%';
+  });
+
+  const resultsEl = document.getElementById('results');
+  resultsEl.classList.add('show');
+
+  document.getElementById('totalVotes').textContent =
+    total === 0 ? 'Aucun vote pour l\'instant' :
+    total === 1 ? '1 vote exprimé' :
+    total + ' votes exprimés';
+}
+
+// Confetti burst
+function confetti(color) {
+  const colors = [color, '#c9a74e', '#fff', '#e74c3c', '#1a4a2e'];
+  for (let i = 0; i < 30; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = (20 + Math.random() * 60) + 'vw';
+    piece.style.top = '-10px';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.width = (5 + Math.random() * 8) + 'px';
+    piece.style.height = (5 + Math.random() * 8) + 'px';
+    piece.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.4) + 's';
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3000);
+  }
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+  const myVote = getMyVote();
+  if (myVote) updateVoteUI(myVote);
+  renderResults();
+});
+</script>
+</body>
+</html>
