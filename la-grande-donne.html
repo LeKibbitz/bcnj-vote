@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCNJ — Bridge Club de Nancy-Jarville | La Grande Donne</title>
+<meta name="description" content="Bridge Club de Nancy-Jarville (BCNJ), Champion de France DN1 et DN2 par paires 2024-2025. Depuis 1945, le bridge d'excellence en Lorraine.">
+<meta property="og:title" content="BCNJ — Bridge Club de Nancy-Jarville">
+<meta property="og:description" content="Champion de France DN1 et DN2 par paires 2024-2025. Depuis 1945, le bridge d'excellence en Lorraine.">
+<meta property="og:image" content="https://bcnj.lekibbitz.fr/images/bcnj-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "SportsClub"],
+  "name": "Bridge Club de Nancy-Jarville",
+  "alternateName": "BCNJ",
+  "description": "Club de bridge fondé en 1945, Champion de France DN1 et DN2 par paires 2024-2025",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bât. T.S.B., 1 rue du Collège",
+    "addressLocality": "Heillecourt",
+    "postalCode": "54180",
+    "addressCountry": "FR"
+  },
+  "telephone": "09 39 24 19 90",
+  "foundingDate": "1945",
+  "sport": "Bridge",
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Fédération Française de Bridge",
+    "url": "https://www.ffbridge.fr"
+  },
+  "image": "https://bcnj.lekibbitz.fr/images/bcnj-logo.png",
+  "award": ["Champion de France DN1 par paires 2024-2025", "Champion de France DN2 par paires 2024-2025"]
+}
+</script>
+<style>
+/* ============================================================
+   CSS RESET & VARIABLES
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --felt-deep: #0a1f12;
+  --felt: #153524;
+  --felt-light: #1d4a2e;
+  --gold: #c9a74e;
+  --gold-bright: #e0c06a;
+  --ivory: #f0e8d0;
+  --red: #c0392b;
+  --card-bg: #fefef7;
+  --spade-color: #1a1a2e;
+  --heart-color: #c0392b;
+  --diamond-color: #c0392b;
+  --club-color: #1a1a2e;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--felt-deep);
+  color: var(--ivory);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   GENERATIVE CANVAS — floating suits background
+   ============================================================ */
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+/* ============================================================
+   FELT TEXTURE MIXIN (applied to sections)
+   ============================================================ */
+.felt-bg {
+  background:
+    repeating-conic-gradient(var(--felt) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px,
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px),
+    radial-gradient(ellipse at 50% 0%, rgba(201,167,78,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--felt) 0%, var(--felt-deep) 100%);
+}
+
+/* ============================================================
+   HAMBURGER NAV (top left, mobile & desktop)
+   ============================================================ */
+.hamburger-nav {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 1001;
+}
+.hamburger-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(10,31,18,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,167,78,0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  transition: border-color 0.3s ease;
+}
+.hamburger-btn:hover { border-color: var(--gold); }
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+.hamburger-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.nav-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10,31,18,0.96);
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.nav-overlay-link {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  color: var(--ivory);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.nav-overlay-link:hover { color: var(--gold); }
+.nav-overlay.open .nav-overlay-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nav-overlay-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-right: 0.75rem;
+}
+
+/* ============================================================
+   HERO DEAL CARDS (4 big cards from v5a)
+   ============================================================ */
+.hero-deal-cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 400px;
+  height: 300px;
+}
+.hero-deal-card {
+  position: absolute;
+  width: 80px;
+  height: 120px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+.hero-deal-card .deal-rank {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.hero-deal-card .deal-suit {
+  font-size: 2rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+.hero-deal-card.dc-black { color: #1a1a2e; }
+.hero-deal-card.dc-red { color: var(--red); }
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--felt-deep);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loading-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2.8rem);
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  opacity: 0;
+}
+.loading-suits {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+}
+.loading-suit {
+  opacity: 0;
+  transform: translateY(20px) scale(0.5);
+}
+.loading-suit.spade { color: var(--ivory); }
+.loading-suit.heart { color: var(--red); }
+.loading-suit.diamond { color: var(--red); }
+.loading-suit.club { color: var(--ivory); }
+.loading-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(201,167,78,0.2);
+  margin-top: 2rem;
+  border-radius: 1px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+/* ============================================================
+   BIDDING BOX NAV (fixed right side)
+   ============================================================ */
+.bidding-nav {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.bidding-nav-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  border: 2px solid rgba(201,167,78,0.3);
+  background: rgba(10,31,18,0.85);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.bidding-nav-btn::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 62px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+}
+.bidding-nav-btn:hover::after { opacity: 1; transform: translateX(0); }
+.bidding-nav-btn:hover,
+.bidding-nav-btn.active {
+  border-color: var(--gold);
+  background: rgba(201,167,78,0.15);
+  transform: scale(1.1);
+}
+.bidding-nav-btn .suit-spade,
+.bidding-nav-btn .suit-club { color: var(--ivory); }
+.bidding-nav-btn .suit-heart,
+.bidding-nav-btn .suit-diamond { color: var(--red); }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem 5%;
+}
+.hero-felt-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(var(--felt) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px,
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px),
+    radial-gradient(ellipse at 50% 30%, rgba(201,167,78,0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--felt-deep) 0%, var(--felt) 40%, var(--felt-deep) 100%);
+  z-index: 1;
+}
+
+/* Compass Rose */
+.compass-rose {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+.compass-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,167,78,0.3);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: compassPulse 4s ease-in-out infinite;
+}
+.compass-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
+.compass-ring:nth-child(2) { width: 75%; height: 75%; animation-delay: 0.5s; }
+.compass-ring:nth-child(3) { width: 50%; height: 50%; animation-delay: 1s; border-color: rgba(201,167,78,0.5); }
+@keyframes compassPulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+}
+.compass-point {
+  position: absolute;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.compass-point.n { top: 6px; left: 50%; transform: translateX(-50%); }
+.compass-point.s { bottom: 6px; left: 50%; transform: translateX(-50%); }
+.compass-point.e { right: 6px; top: 50%; transform: translateY(-50%); }
+.compass-point.o { left: 6px; top: 50%; transform: translateY(-50%); }
+.compass-logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: var(--felt-deep);
+  padding: 8px;
+  border: 2px solid var(--gold);
+}
+.compass-orbit-suit {
+  position: absolute;
+  font-size: 1.1rem;
+  animation: orbit 12s linear infinite;
+}
+.compass-orbit-suit:nth-child(6) { animation-delay: 0s; }
+.compass-orbit-suit:nth-child(7) { animation-delay: -3s; }
+.compass-orbit-suit:nth-child(8) { animation-delay: -6s; }
+.compass-orbit-suit:nth-child(9) { animation-delay: -9s; }
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(118px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(118px) rotate(-360deg); }
+}
+
+/* Bidding Sequence */
+.bidding-sequence {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  margin-bottom: 1rem;
+  min-height: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.bid-item {
+  background: rgba(201,167,78,0.1);
+  border: 1px solid rgba(201,167,78,0.3);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(10px);
+  white-space: nowrap;
+}
+.bid-arrow {
+  color: var(--gold);
+  opacity: 0;
+}
+.bid-final {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+/* Hero Title */
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5vw, 3.6rem);
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 0.08em;
+  z-index: 2;
+  margin-bottom: 0.5rem;
+}
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: rgba(240,232,208,0.7);
+  text-align: center;
+  z-index: 2;
+  letter-spacing: 0.05em;
+  max-width: 600px;
+}
+
+/* Vulnerability Badge */
+.vuln-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.4);
+  color: var(--red);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  z-index: 2;
+}
+.vuln-dot {
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: vulnPulse 2s ease-in-out infinite;
+}
+@keyframes vulnPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Interactive 13-card hand */
+.card-hand {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+.hand-card {
+  width: 48px;
+  height: 72px;
+  background: var(--card-bg);
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: default;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  margin-left: -14px;
+}
+.hand-card:first-child { margin-left: 0; }
+.hand-card .rank { font-size: 0.75rem; line-height: 1; }
+.hand-card .suit-sym { font-size: 0.9rem; line-height: 1; }
+.hand-card.black { color: #1a1a2e; }
+.hand-card.red { color: var(--red); }
+.hand-card:hover {
+  transform: translateY(-18px) scale(1.08);
+  z-index: 10;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   CHAPTER LABEL (mono accent)
+   ============================================================ */
+.chapter-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+/* ============================================================
+   SECTION TITLE (card-styled header from v5a)
+   ============================================================ */
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.section-mini-card {
+  width: 36px;
+  height: 50px;
+  background: var(--card-bg);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+.section-mini-card.black { color: #1a1a2e; }
+.section-mini-card.red { color: var(--red); }
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   INTERSTITIAL QUOTE SECTIONS
+   ============================================================ */
+.interstitial {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 8%;
+  overflow: hidden;
+}
+.interstitial-bg-suit {
+  position: absolute;
+  font-size: clamp(15rem, 40vw, 35rem);
+  opacity: 0.04;
+  color: var(--gold);
+  z-index: 0;
+  user-select: none;
+  line-height: 1;
+}
+.interstitial-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+}
+.interstitial-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--ivory);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.interstitial-attr {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================================
+   CONTENT SECTIONS
+   ============================================================ */
+.content-section {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 8%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   CHAMPIONS — Counter Cards
+   ============================================================ */
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.counter-card {
+  background: rgba(201,167,78,0.06);
+  border: 1px solid rgba(201,167,78,0.2);
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.counter-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+.counter-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  color: var(--gold-bright);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.counter-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(240,232,208,0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Championship cards */
+.champ-cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+.champ-card {
+  background: linear-gradient(135deg, rgba(201,167,78,0.12) 0%, rgba(201,167,78,0.03) 100%);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  flex: 1 1 260px;
+  max-width: 340px;
+}
+.champ-card-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--gold-bright);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+.champ-card-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(240,232,208,0.7);
+}
+.champ-card-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* ============================================================
+   TIMELINE (L'Histoire)
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+  margin-top: 2rem;
+}
+.timeline-line {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(201,167,78,0.15);
+}
+.timeline-fill {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: var(--gold);
+  transition: height 0.1s linear;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.timeline-dot {
+  position: absolute;
+  left: -2.55rem;
+  top: 0.3rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--felt-deep);
+  z-index: 2;
+}
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.timeline-item.active .timeline-dot::after { opacity: 1; }
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--gold-bright);
+  margin-bottom: 0.25rem;
+}
+.timeline-desc {
+  font-size: 0.95rem;
+  color: rgba(240,232,208,0.8);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SCORE PAD (Calendrier)
+   ============================================================ */
+.score-pad {
+  background: rgba(10,31,18,0.8);
+  border: 1px solid rgba(201,167,78,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 600px;
+}
+.score-pad-header {
+  background: rgba(201,167,78,0.12);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid var(--gold);
+  text-align: center;
+}
+.score-pad-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px dotted rgba(201,167,78,0.15);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.score-pad-row:last-child { border-bottom: none; }
+.score-pad-day { color: var(--ivory); font-weight: 500; }
+.score-pad-dots {
+  flex: 1;
+  margin: 0 0.5rem;
+  border-bottom: 1px dotted rgba(201,167,78,0.2);
+  min-width: 20px;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+.score-pad-time { color: var(--gold); white-space: nowrap; }
+.score-pad-note {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(240,232,208,0.5);
+  margin-top: 2px;
+}
+.next-event {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(201,167,78,0.08);
+  border: 1px solid rgba(201,167,78,0.25);
+  border-radius: 8px;
+  max-width: 600px;
+}
+.next-event-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.next-event-text {
+  font-size: 0.9rem;
+  color: var(--ivory);
+}
+
+.club-address {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: rgba(240,232,208,0.7);
+  line-height: 1.6;
+}
+.club-address strong {
+  color: var(--ivory);
+}
+
+/* ============================================================
+   COURSE CARDS (L'Ecole — dealt like playing cards)
+   ============================================================ */
+.course-cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.course-card {
+  width: 260px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  color: #1a1a1a;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: rotate(0deg) translateY(40px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-8px) rotate(0deg) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.course-card-suit {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.course-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--felt-deep);
+  margin-bottom: 0.5rem;
+}
+.course-card-level {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gold);
+  background: var(--felt-deep);
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+.course-card-desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TABLE COMPASS (Comite)
+   ============================================================ */
+.compass-table {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 2rem auto;
+}
+.compass-table-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(201,167,78,0.2);
+  border-radius: 50%;
+}
+.compass-table-inner-ring {
+  position: absolute;
+  inset: 25%;
+  border: 1px solid rgba(201,167,78,0.15);
+  border-radius: 50%;
+}
+.compass-table-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+.compass-member {
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.compass-member-pos {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.1em;
+}
+.compass-member-name {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ivory);
+  white-space: nowrap;
+}
+.compass-member-role {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(240,232,208,0.5);
+  letter-spacing: 0.05em;
+}
+.compass-member.north { top: 5%; left: 50%; }
+.compass-member.south { top: 95%; left: 50%; }
+.compass-member.east { top: 50%; left: 96%; }
+
+/* ============================================================
+   PUBLICATIONS & CURIOSITES
+   ============================================================ */
+.curiosities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.curiosity-card {
+  background: rgba(201,167,78,0.05);
+  border: 1px solid rgba(201,167,78,0.15);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+.curiosity-card:hover { border-color: var(--gold); }
+.curiosity-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.curiosity-desc {
+  font-size: 0.85rem;
+  color: rgba(240,232,208,0.7);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   LOGIN CARD (Espace Membre)
+   ============================================================ */
+.login-card {
+  background: rgba(10,31,18,0.8);
+  border: 1px solid rgba(201,167,78,0.3);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  max-width: 400px;
+  margin: 2rem auto 0;
+}
+.login-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,167,78,0.2);
+  border-radius: 6px;
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.3s ease;
+}
+.login-input::placeholder {
+  color: rgba(240,232,208,0.35);
+}
+.login-input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--gold);
+  color: var(--felt-deep);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.login-btn:hover { background: var(--gold-bright); }
+
+/* ============================================================
+   KIB SECTION
+   ============================================================ */
+.kib-section {
+  text-align: center;
+  padding: 4rem 8%;
+  position: relative;
+  z-index: 1;
+}
+.kib-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--gold);
+  background: rgba(201,167,78,0.08);
+  border: 1px solid rgba(201,167,78,0.3);
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  transition: border-color 0.3s ease;
+  text-decoration: none;
+}
+.kib-phone:hover { border-color: var(--gold-bright); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(201,167,78,0.15);
+  padding: 3rem 8% 2rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.footer-col-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block;
+  color: rgba(240,232,208,0.6);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  transition: color 0.3s ease;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-logos {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.footer-logo-img {
+  height: 40px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.footer-logo-img:hover { opacity: 1; }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201,167,78,0.08);
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(240,232,208,0.35);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   MOBILE — Bidding Nav as Bottom Bar
+   ============================================================ */
+@media (max-width: 768px) {
+  .bidding-nav {
+    flex-direction: row;
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    background: rgba(10,31,18,0.92);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(201,167,78,0.2);
+  }
+  .bidding-nav-btn { width: 44px; height: 44px; font-size: 1.2rem; }
+  .bidding-nav-btn::after { display: none; }
+  .content-section { padding: 3rem 6%; }
+  .interstitial { padding: 3rem 6%; min-height: 35vh; }
+  .compass-rose { width: 200px; height: 200px; }
+  .compass-orbit-suit { display: none; }
+  .compass-table { width: 260px; height: 260px; }
+  .hand-card { width: 36px; height: 54px; margin-left: -10px; }
+  .hand-card .rank { font-size: 0.6rem; }
+  .hand-card .suit-sym { font-size: 0.7rem; }
+  .hero { padding-bottom: 6rem; }
+  .score-pad-row { padding: 0.7rem 1rem; font-size: 0.72rem; }
+  .course-card { width: 100%; max-width: 280px; }
+  .counter-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .compass-rose { width: 160px; height: 160px; }
+  .compass-logo { width: 56px; height: 56px; }
+  .card-hand { bottom: 1rem; }
+  .hand-card { width: 30px; height: 46px; margin-left: -8px; font-size: 0.45rem; }
+  .hand-card .rank { font-size: 0.5rem; }
+  .hand-card .suit-sym { font-size: 0.6rem; }
+  .counter-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .counter-card { padding: 1.2rem 0.75rem; }
+  .champ-card { flex: 1 1 100%; }
+}
+
+/* ============================================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================================ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* === QR CODE === */
+.qr-vote-block{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.8rem;background:rgba(10,10,10,.85);border:1px solid rgba(201,167,78,.3);border-radius:10px;backdrop-filter:blur(8px);transition:opacity .3s;cursor:pointer}
+.qr-vote-block:hover{border-color:rgba(201,167,78,.6)}
+.qr-vote-block img{width:80px;height:80px;border-radius:4px}
+.qr-vote-block p{font-family:'Space Grotesk',sans-serif;font-size:.55rem;color:#c9a74e;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.3;margin:0}
+.qr-vote-block .qr-label{color:#999;font-size:.5rem}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loading-screen">
+  <div class="loading-title">La donne commence</div>
+  <div class="loading-suits">
+    <span class="loading-suit spade">&#9824;</span>
+    <span class="loading-suit heart">&#9829;</span>
+    <span class="loading-suit diamond">&#9830;</span>
+    <span class="loading-suit club">&#9827;</span>
+  </div>
+  <div class="loading-bar">
+    <div class="loading-bar-fill"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HAMBURGER NAV
+     ============================================================ -->
+<div class="hamburger-nav">
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu de navigation">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+</div>
+<div class="nav-overlay" id="nav-overlay">
+  <a class="nav-overlay-link" data-target="#hero">
+    <span class="nav-overlay-label">Accueil</span>La Grande Donne
+  </a>
+  <a class="nav-overlay-link" data-target="#champions">
+    <span class="nav-overlay-label">Chapitre I</span>Champions de France
+  </a>
+  <a class="nav-overlay-link" data-target="#histoire">
+    <span class="nav-overlay-label">Chapitre II</span>L'Histoire
+  </a>
+  <a class="nav-overlay-link" data-target="#calendrier">
+    <span class="nav-overlay-label">Chapitre III</span>Le Calendrier
+  </a>
+  <a class="nav-overlay-link" data-target="#ecole">
+    <span class="nav-overlay-label">Chapitre IV</span>L'École de Bridge
+  </a>
+  <a class="nav-overlay-link" data-target="#comite">
+    <span class="nav-overlay-label">Chapitre V</span>Le Comité
+  </a>
+  <a class="nav-overlay-link" data-target="#curiosites">
+    <span class="nav-overlay-label">Chapitre VI</span>Le Coin des Curieux
+  </a>
+  <a class="nav-overlay-link" data-target="#espace-membre">
+    <span class="nav-overlay-label">Chapitre VII</span>Espace Membre
+  </a>
+</div>
+
+<!-- ============================================================
+     GENERATIVE CANVAS — floating card suits
+     ============================================================ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ============================================================
+     BIDDING BOX NAV
+     ============================================================ -->
+<nav class="bidding-nav" aria-label="Navigation principale">
+  <button class="bidding-nav-btn" data-label="Champions" onclick="smoothNav('#champions')">
+    <span class="suit-spade">&#9824;</span>
+  </button>
+  <button class="bidding-nav-btn" data-label="Calendrier" onclick="smoothNav('#calendrier')">
+    <span class="suit-heart">&#9829;</span>
+  </button>
+  <button class="bidding-nav-btn" data-label="Ecole" onclick="smoothNav('#ecole')">
+    <span class="suit-diamond">&#9830;</span>
+  </button>
+  <button class="bidding-nav-btn" data-label="Le Club" onclick="smoothNav('#comite')">
+    <span class="suit-club">&#9827;</span>
+  </button>
+</nav>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-felt-overlay"></div>
+
+  <!-- Hero Deal Cards (v5a — 4 cards dealt from center) -->
+  <div class="hero-deal-cards" aria-hidden="true">
+    <div class="hero-deal-card dc-black" id="deal-a-spade">
+      <span class="deal-rank">A</span><span class="deal-suit">&#9824;</span>
+    </div>
+    <div class="hero-deal-card dc-red" id="deal-k-heart">
+      <span class="deal-rank">R</span><span class="deal-suit">&#9829;</span>
+    </div>
+    <div class="hero-deal-card dc-red" id="deal-q-diamond">
+      <span class="deal-rank">D</span><span class="deal-suit">&#9830;</span>
+    </div>
+    <div class="hero-deal-card dc-black" id="deal-j-club">
+      <span class="deal-rank">V</span><span class="deal-suit">&#9827;</span>
+    </div>
+  </div>
+
+  <!-- Compass Rose -->
+  <div class="compass-rose" aria-hidden="true">
+    <div class="compass-ring"></div>
+    <div class="compass-ring"></div>
+    <div class="compass-ring"></div>
+    <span class="compass-point n">N</span>
+    <span class="compass-point s">S</span>
+    <span class="compass-point e">E</span>
+    <span class="compass-point o">O</span>
+    <img class="compass-logo" src="https://bcnj.lekibbitz.fr/images/bcnj-logo.png" alt="Logo BCNJ">
+    <span class="compass-orbit-suit" style="color:var(--ivory);">&#9824;</span>
+    <span class="compass-orbit-suit" style="color:var(--red);">&#9829;</span>
+    <span class="compass-orbit-suit" style="color:var(--red);">&#9830;</span>
+    <span class="compass-orbit-suit" style="color:var(--ivory);">&#9827;</span>
+  </div>
+
+  <!-- Bidding Sequence Animation -->
+  <div class="bidding-sequence" aria-label="Sequence d'encheres">
+    <span class="bid-item">1<span style="color:var(--ivory)">&#9824;</span></span>
+    <span class="bid-arrow">&rarr;</span>
+    <span class="bid-item">2<span style="color:var(--red)">&#9829;</span></span>
+    <span class="bid-arrow">&rarr;</span>
+    <span class="bid-item">3SA</span>
+    <span class="bid-arrow">&rarr;</span>
+    <span class="bid-item bid-final">Champion de France 2024-2025&thinsp;&#10003;</span>
+  </div>
+
+  <!-- Title -->
+  <h1 class="hero-title">Bridge Club de Nancy-Jarville</h1>
+  <p class="hero-subtitle">Depuis 1945, le bridge d'excellence en Lorraine</p>
+
+  <!-- Vulnerability Badge -->
+  <div class="vuln-badge">
+    <span class="vuln-dot"></span>
+    Tous vulnerables&thinsp;&mdash;&thinsp;Saison 2024-2025
+  </div>
+
+  <!-- Interactive 13-card hand -->
+  <div class="card-hand" aria-hidden="true">
+    <div class="hand-card black"><span class="rank">A</span><span class="suit-sym">&#9824;</span></div>
+    <div class="hand-card black"><span class="rank">R</span><span class="suit-sym">&#9824;</span></div>
+    <div class="hand-card black"><span class="rank">D</span><span class="suit-sym">&#9824;</span></div>
+    <div class="hand-card red"><span class="rank">A</span><span class="suit-sym">&#9829;</span></div>
+    <div class="hand-card red"><span class="rank">R</span><span class="suit-sym">&#9829;</span></div>
+    <div class="hand-card red"><span class="rank">V</span><span class="suit-sym">&#9829;</span></div>
+    <div class="hand-card red"><span class="rank">A</span><span class="suit-sym">&#9830;</span></div>
+    <div class="hand-card red"><span class="rank">R</span><span class="suit-sym">&#9830;</span></div>
+    <div class="hand-card red"><span class="rank">D</span><span class="suit-sym">&#9830;</span></div>
+    <div class="hand-card black"><span class="rank">A</span><span class="suit-sym">&#9827;</span></div>
+    <div class="hand-card black"><span class="rank">R</span><span class="suit-sym">&#9827;</span></div>
+    <div class="hand-card black"><span class="rank">D</span><span class="suit-sym">&#9827;</span></div>
+    <div class="hand-card black"><span class="rank">V</span><span class="suit-sym">&#9827;</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERSTITIAL I
+     ============================================================ -->
+<section class="interstitial">
+  <span class="interstitial-bg-suit" aria-hidden="true">&#9824;</span>
+  <div class="interstitial-content reveal-scale">
+    <p class="interstitial-quote">&laquo;&thinsp;Le bridge est un jeu de communication. Chaque enchère est un mot, chaque carte posée, une phrase.&thinsp;&raquo;</p>
+    <p class="interstitial-attr">&mdash;&thinsp;Omar Sharif</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE I — CHAMPIONS DE FRANCE
+     ============================================================ -->
+<section class="content-section" id="champions">
+  <div class="chapter-label reveal-up">Chapitre I</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card black">&#9824;</div>
+    <h2 class="section-title">Champions de France</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    En 2025, le Bridge Club de Nancy-Jarville a inscrit son nom en lettres d'or dans l'histoire du bridge français. Double champion de France par paires&thinsp;: une performance exceptionnelle qui couronne 80 ans de passion et de rigueur.
+  </p>
+
+  <div class="champ-cards">
+    <div class="champ-card reveal-scale">
+      <span class="champ-card-emoji">&#127942;</span>
+      <div class="champ-card-title">Champion de France DN1</div>
+      <div class="champ-card-year">Par paires&thinsp;&mdash;&thinsp;2024-2025</div>
+    </div>
+    <div class="champ-card reveal-scale">
+      <span class="champ-card-emoji">&#127942;</span>
+      <div class="champ-card-title">Champion de France DN2</div>
+      <div class="champ-card-year">Par paires&thinsp;&mdash;&thinsp;2024-2025</div>
+    </div>
+  </div>
+
+  <div class="counter-grid">
+    <div class="counter-card reveal-up">
+      <div class="counter-number" data-target="80">0</div>
+      <div class="counter-label">Années d'existence</div>
+    </div>
+    <div class="counter-card reveal-up">
+      <div class="counter-number" data-target="2">0</div>
+      <div class="counter-label">Titres nationaux</div>
+    </div>
+    <div class="counter-card reveal-up">
+      <div class="counter-number" data-target="5">0</div>
+      <div class="counter-label">Séances par semaine</div>
+    </div>
+    <div class="counter-card reveal-up">
+      <div class="counter-number" data-target="3">0</div>
+      <div class="counter-label">Niveaux de cours</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERSTITIAL II
+     ============================================================ -->
+<section class="interstitial">
+  <span class="interstitial-bg-suit" aria-hidden="true" style="color:var(--red);">&#9829;</span>
+  <div class="interstitial-content reveal-scale">
+    <p class="interstitial-quote">&laquo;&thinsp;Il n'existe pas de bonne enchère sans partenariat, il n'existe pas de partenariat sans confiance.&thinsp;&raquo;</p>
+    <p class="interstitial-attr">&mdash;&thinsp;Pierre Albarran</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE II — L'HISTOIRE
+     ============================================================ -->
+<section class="content-section" id="histoire">
+  <div class="chapter-label reveal-up">Chapitre II</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card red">&#9829;</div>
+    <h2 class="section-title">L'Histoire</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    Depuis sa fondation en 1945, le BCNJ n'a cessé de grandir, porté par des passionnés qui ont fait de Nancy une place forte du bridge français.
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-line"></div>
+    <div class="timeline-fill" id="timeline-fill"></div>
+
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1945</div>
+      <div class="timeline-desc">Fondation du Bridge Club de Nancy-Jarville dans l'effervescence de l'après-guerre. Les premiers passionnés se retrouvent pour partager leur amour du jeu.</div>
+    </div>
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">Années 1970</div>
+      <div class="timeline-desc">Le club prend son essor et s'impose comme une référence en Lorraine. L'école de bridge accueille ses premiers élèves et forge une tradition d'enseignement.</div>
+    </div>
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2000</div>
+      <div class="timeline-desc">Le club franchit le cap du nouveau millénaire en modernisant ses structures. Les premières séances en ligne ouvrent de nouvelles perspectives de jeu.</div>
+    </div>
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2020</div>
+      <div class="timeline-desc">Adoption de RealBridge pour les tournois en ligne. Le club maintient le lien pendant la pandémie et étend sa communauté au-delà des frontières lorraines.</div>
+    </div>
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2025</div>
+      <div class="timeline-desc">Consécration&thinsp;: le BCNJ est sacré double Champion de France DN1 et DN2 par paires. Quatre-vingts ans d'excellence récompensés au plus haut niveau.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE III — LE CALENDRIER
+     ============================================================ -->
+<section class="content-section" id="calendrier">
+  <div class="chapter-label reveal-up">Chapitre III</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card red">&#9830;</div>
+    <h2 class="section-title">Le Calendrier</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    Cinq rendez-vous par semaine, en ligne et en présentiel, pour tous les niveaux. Retrouvez la régularité d'un club qui vit au rythme des donnes.
+  </p>
+
+  <div class="score-pad">
+    <div class="score-pad-header">Séances hebdomadaires</div>
+    <div class="score-pad-row">
+      <span class="score-pad-day">Lundi</span>
+      <span class="score-pad-dots"></span>
+      <span class="score-pad-time">20h00
+        <span class="score-pad-note">RealBridge (en ligne)</span>
+      </span>
+    </div>
+    <div class="score-pad-row">
+      <span class="score-pad-day">Mardi</span>
+      <span class="score-pad-dots"></span>
+      <span class="score-pad-time">14h15
+        <span class="score-pad-note">Tournoi au club (présentiel)</span>
+      </span>
+    </div>
+    <div class="score-pad-row">
+      <span class="score-pad-day">Jeudi</span>
+      <span class="score-pad-dots"></span>
+      <span class="score-pad-time">14h15
+        <span class="score-pad-note">Tournoi au club (présentiel)</span>
+      </span>
+    </div>
+    <div class="score-pad-row">
+      <span class="score-pad-day">Vendredi</span>
+      <span class="score-pad-dots"></span>
+      <span class="score-pad-time">20h00
+        <span class="score-pad-note">RealBridge (en ligne)</span>
+      </span>
+    </div>
+    <div class="score-pad-row">
+      <span class="score-pad-day">Dimanche</span>
+      <span class="score-pad-dots"></span>
+      <span class="score-pad-time">20h00
+        <span class="score-pad-note">RealBridge (en ligne)</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="next-event reveal-up">
+    <div class="next-event-label">Prochain evenement</div>
+    <div class="next-event-text">15 mai 2026, 20h15&thinsp;&mdash;&thinsp;E-MATCH/4 Les Vendredis de Nancy (RealBridge)</div>
+  </div>
+
+  <div class="club-address reveal-up">
+    <strong>Adresse du club</strong><br>
+    Bât. T.S.B., 1 rue du Collège<br>
+    54180 Heillecourt
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERSTITIAL III
+     ============================================================ -->
+<section class="interstitial">
+  <span class="interstitial-bg-suit" aria-hidden="true">&#9830;</span>
+  <div class="interstitial-content reveal-scale">
+    <p class="interstitial-quote">&laquo;&thinsp;Le bridge enseigne la logique, la mémoire, la psychologie. C'est le plus noble des jeux de cartes.&thinsp;&raquo;</p>
+    <p class="interstitial-attr">&mdash;&thinsp;José Damiani</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE IV — L'ECOLE DE BRIDGE
+     ============================================================ -->
+<section class="content-section" id="ecole">
+  <div class="chapter-label reveal-up">Chapitre IV</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card red">&#9830;</div>
+    <h2 class="section-title">L'École de Bridge</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    Trois niveaux de formation pour vous accompagner dans votre progression, de la découverte du jeu à la maîtrise compétitive. Des cours dispensés par des joueurs expérimentés et passionnés.
+  </p>
+
+  <div class="course-cards">
+    <div class="course-card" id="course-1">
+      <span class="course-card-suit" style="color:var(--red);">&#9829;</span>
+      <div class="course-card-level">Niveau 1</div>
+      <div class="course-card-title">Initiation</div>
+      <p class="course-card-desc">Découvrez les bases du bridge&thinsp;: les enchères, le jeu de la carte, les premiers réflexes. Accessible à tous, sans prérequis.</p>
+    </div>
+    <div class="course-card" id="course-2">
+      <span class="course-card-suit" style="color:var(--red);">&#9830;</span>
+      <div class="course-card-level">Niveau 2</div>
+      <div class="course-card-title">Perfectionnement</div>
+      <p class="course-card-desc">Approfondissez votre jeu&thinsp;: conventions avancées, signalisation, stratégies de tournoi. Pour les joueurs ayant acquis les fondamentaux.</p>
+    </div>
+    <div class="course-card" id="course-3">
+      <span class="course-card-suit">&#9824;</span>
+      <div class="course-card-level">Niveau 3</div>
+      <div class="course-card-title">Compétition</div>
+      <p class="course-card-desc">Préparez-vous au haut niveau&thinsp;: analyses de donnes, systèmes d'enchères complexes, entraînement intensif en conditions de tournoi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE V — LE COMITE
+     ============================================================ -->
+<section class="content-section" id="comite">
+  <div class="chapter-label reveal-up">Chapitre V</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card black">&#9827;</div>
+    <h2 class="section-title">Le Comité</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    Le bureau du BCNJ veille au bon fonctionnement du club et à l'organisation des événements. Une équipe dévouée au service de tous les bridgeurs.
+  </p>
+
+  <div class="compass-table reveal-scale">
+    <div class="compass-table-ring"></div>
+    <div class="compass-table-inner-ring"></div>
+    <div class="compass-table-center">BCNJ<br>Comité</div>
+
+    <div class="compass-member north">
+      <div class="compass-member-pos">N</div>
+      <div class="compass-member-name">Christian Weber</div>
+      <div class="compass-member-role">Président</div>
+    </div>
+    <div class="compass-member south">
+      <div class="compass-member-pos">S</div>
+      <div class="compass-member-name">Marie-Hélène Munier</div>
+      <div class="compass-member-role">Vice-Présidente</div>
+    </div>
+    <div class="compass-member east">
+      <div class="compass-member-pos">E</div>
+      <div class="compass-member-name">Pierre Lavigne</div>
+      <div class="compass-member-role">Trésorier</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE VI — LE COIN DES CURIEUX
+     ============================================================ -->
+<section class="content-section" id="curiosites">
+  <div class="chapter-label reveal-up">Chapitre VI</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card red">&#9829;</div>
+    <h2 class="section-title">Le Coin des Curieux</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7;">
+    Publications, actualités et ressources pour aller plus loin dans l'univers du bridge nancéien.
+  </p>
+
+  <div class="curiosities-grid">
+    <div class="curiosity-card reveal-up">
+      <div class="curiosity-title">Nancy-Texas</div>
+      <p class="curiosity-desc">La gazette du club, publiée en 10 numéros. Analyses de donnes, portraits de joueurs, résultats et anecdotes du monde du bridge lorrain.</p>
+    </div>
+    <div class="curiosity-card reveal-up">
+      <div class="curiosity-title">BCNJ Info</div>
+      <p class="curiosity-desc">Le bulletin d'information du club, 19 numéros publiés. Calendrier, convocations, vie du club et nouvelles de la fédération.</p>
+    </div>
+    <div class="curiosity-card reveal-up">
+      <div class="curiosity-title">Actualités</div>
+      <p class="curiosity-desc">Suivez les résultats des compétitions, les événements à venir et l'actualité du bridge au sein du comité de Lorraine et de la FFB.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPITRE VII — ESPACE MEMBRE
+     ============================================================ -->
+<section class="content-section" id="espace-membre">
+  <div class="chapter-label reveal-up">Chapitre VII</div>
+  <div class="section-title-wrap reveal-up">
+    <div class="section-mini-card black">&#9824;</div>
+    <h2 class="section-title">Espace Membre</h2>
+  </div>
+
+  <p class="reveal-up" style="color:rgba(240,232,208,0.8); max-width:700px; margin-bottom:2rem; line-height:1.7; margin-left:auto; margin-right:auto; text-align:center;">
+    Accédez à votre espace personnel pour consulter vos résultats, vos classements et les informations réservées aux membres du club.
+  </p>
+
+  <div class="login-card reveal-scale">
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <input class="login-input" type="text" placeholder="Numéro de licence FFB" autocomplete="username" required>
+      <input class="login-input" type="password" placeholder="Mot de passe" autocomplete="current-password" required>
+      <button class="login-btn" type="submit">Connexion</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     KIB — AI ASSISTANT
+     ============================================================ -->
+<section class="kib-section" id="kib">
+  <div class="chapter-label">Assistant Kib</div>
+  <h2 style="font-family:var(--font-heading); font-size:clamp(1.2rem,3vw,1.8rem); color:var(--gold); margin-bottom:0.5rem; letter-spacing:0.06em;">Besoin d'aide&thinsp;?</h2>
+  <p style="color:rgba(240,232,208,0.7); font-size:0.95rem; max-width:500px; margin:0 auto;">
+    Kib, notre assistant virtuel, est disponible pour répondre à toutes vos questions sur le club, les horaires et les inscriptions.
+  </p>
+  <a href="tel:0939241990" class="kib-phone">
+    <span>&#9742;</span>
+    <span>09 39 24 19 90</span>
+  </a>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <p style="font-size:0.85rem; color:rgba(240,232,208,0.6); line-height:1.6;">
+        Bridge Club de Nancy-Jarville<br>
+        Bât. T.S.B., 1 rue du Collège<br>
+        54180 Heillecourt<br>
+        <a href="tel:0939241990" style="color:var(--gold); text-decoration:none;">09 39 24 19 90</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Liens</div>
+      <a href="https://www.ffbridge.fr" target="_blank" rel="noopener noreferrer">Fédération Française de Bridge</a>
+      <a href="#calendrier">Calendrier des séances</a>
+      <a href="#ecole">École de bridge</a>
+      <a href="#espace-membre">Espace membre</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Partenaires</div>
+      <div class="footer-logos">
+        <img class="footer-logo-img" src="https://bcnj.lekibbitz.fr/images/bcnj-logo.png" alt="Logo BCNJ">
+        <img class="footer-logo-img" src="https://bcnj.lekibbitz.fr/images/ffb-logo.png" alt="Logo FFB">
+        <img class="footer-logo-img" src="https://bcnj.lekibbitz.fr/images/lorraine-logo.png" alt="Logo Lorraine">
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Bridge Club de Nancy-Jarville&thinsp;&mdash;&thinsp;Depuis 1945
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollToPlugin.min.js"></script>
+<script>
+/* ============================================================
+   REGISTER GSAP PLUGINS
+   ============================================================ */
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+(function initLoading() {
+  const title = document.querySelector('.loading-title');
+  const suits = document.querySelectorAll('.loading-suit');
+  const barFill = document.querySelector('.loading-bar-fill');
+  const screen = document.getElementById('loading-screen');
+
+  const tl = gsap.timeline({
+    onComplete: function() {
+      screen.classList.add('hidden');
+      initHeroAnimations();
+      initScrollAnimations();
+    }
+  });
+
+  tl.to(title, { opacity: 1, duration: 0.6, ease: 'power2.out' })
+    .to(suits, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      stagger: 0.2,
+      duration: 0.5,
+      ease: 'back.out(1.7)'
+    }, '-=0.2')
+    .to(barFill, { width: '100%', duration: 1.2, ease: 'power2.inOut' }, '-=0.6')
+    .to({}, { duration: 0.3 });
+})();
+
+/* ============================================================
+   GENERATIVE CANVAS — floating suit symbols
+   ============================================================ */
+(function initCanvas() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animFrame;
+  let isVisible = true;
+  const suits = ['♠', '♥', '♦', '♣'];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function createParticle() {
+    return {
+      x: Math.random() * canvas.width,
+      y: canvas.height + 20,
+      speed: 0.3 + Math.random() * 0.7,
+      drift: (Math.random() - 0.5) * 0.3,
+      size: 12 + Math.random() * 18,
+      suit: suits[Math.floor(Math.random() * 4)],
+      opacity: 0.15 + Math.random() * 0.25,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.01
+    };
+  }
+
+  for (let i = 0; i < 30; i++) {
+    const p = createParticle();
+    p.y = Math.random() * canvas.height;
+    particles.push(p);
+  }
+
+  function animate() {
+    if (!isVisible) { animFrame = requestAnimationFrame(animate); return; }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(function(p) {
+      p.y -= p.speed;
+      p.x += p.drift;
+      p.rotation += p.rotSpeed;
+
+      if (p.y < -30) {
+        p.y = canvas.height + 20;
+        p.x = Math.random() * canvas.width;
+      }
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.font = p.size + 'px serif';
+      ctx.fillStyle = (p.suit === '♥' || p.suit === '♦')
+        ? 'rgba(192,57,43,' + p.opacity + ')'
+        : 'rgba(240,232,208,' + p.opacity + ')';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(p.suit, 0, 0);
+      ctx.restore();
+    });
+
+    if (particles.length < 30 && Math.random() < 0.02) {
+      particles.push(createParticle());
+    }
+
+    animFrame = requestAnimationFrame(animate);
+  }
+  animate();
+
+  /* Pause canvas when page hidden */
+  var heroSection = document.getElementById('hero');
+  var observer = new IntersectionObserver(function(entries) {
+    isVisible = entries[0].isIntersecting;
+  }, { threshold: 0 });
+  observer.observe(heroSection);
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      isVisible = false;
+    }
+  });
+})();
+
+/* ============================================================
+   HERO ANIMATIONS
+   ============================================================ */
+function initHeroAnimations() {
+  /* Hero deal cards (v5a — 4 cards dealt from center with GSAP stagger) */
+  var dealPositions = [
+    { x: -160, y: -80, rot: -12 },
+    { x: -55,  y: -90, rot: -4 },
+    { x: 55,   y: -90, rot: 4 },
+    { x: 160,  y: -80, rot: 12 }
+  ];
+  var dealCards = document.querySelectorAll('.hero-deal-card');
+  gsap.to(dealCards, {
+    opacity: 0.4,
+    scale: 1,
+    stagger: 0.15,
+    duration: 0.7,
+    ease: 'back.out(1.7)',
+    delay: 0.1
+  });
+  dealCards.forEach(function(card, i) {
+    gsap.to(card, {
+      x: dealPositions[i].x,
+      y: dealPositions[i].y,
+      rotation: dealPositions[i].rot,
+      delay: 0.1 + i * 0.15,
+      duration: 0.7,
+      ease: 'back.out(1.7)'
+    });
+    /* Fade them out after dealing so compass is clear */
+    gsap.to(card, {
+      opacity: 0,
+      delay: 2.5 + i * 0.1,
+      duration: 0.6,
+      ease: 'power2.in'
+    });
+  });
+
+  /* Bidding sequence */
+  var bidItems = document.querySelectorAll('.bid-item');
+  var bidArrows = document.querySelectorAll('.bid-arrow');
+  var bidTl = gsap.timeline({ delay: 0.3 });
+
+  bidItems.forEach(function(item, i) {
+    bidTl.to(item, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'back.out(1.7)'
+    });
+    if (bidArrows[i]) {
+      bidTl.to(bidArrows[i], {
+        opacity: 1,
+        duration: 0.2
+      }, '-=0.15');
+    }
+  });
+
+  /* 13-card hand — deal stagger */
+  gsap.from('.hand-card', {
+    y: 100,
+    opacity: 0,
+    rotation: function(i) { return (Math.random() - 0.5) * 30; },
+    stagger: 0.06,
+    duration: 0.5,
+    ease: 'back.out(1.4)',
+    delay: 0.5
+  });
+
+  /* Fan the hand into slight arc */
+  var handCards = document.querySelectorAll('.hand-card');
+  var total = handCards.length;
+  handCards.forEach(function(card, i) {
+    var angle = (i - (total - 1) / 2) * 2.5;
+    gsap.set(card, { rotation: angle, transformOrigin: 'center 200%' });
+  });
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS (ScrollTrigger)
+   ============================================================ */
+function initScrollAnimations() {
+
+  /* Reveal-up elements */
+  gsap.utils.toArray('.reveal-up').forEach(function(el) {
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+
+  /* Reveal-left elements */
+  gsap.utils.toArray('.reveal-left').forEach(function(el) {
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      x: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+
+  /* Reveal-scale elements */
+  gsap.utils.toArray('.reveal-scale').forEach(function(el) {
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      scale: 1,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+
+  /* Score pad rows — slide in like dealt cards */
+  gsap.utils.toArray('.score-pad-row').forEach(function(row, i) {
+    gsap.to(row, {
+      scrollTrigger: {
+        trigger: row,
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      },
+      x: 0,
+      opacity: 1,
+      duration: 0.5,
+      delay: i * 0.1,
+      ease: 'power2.out'
+    });
+  });
+
+  /* Course cards — fan in with rotation */
+  var courseCards = document.querySelectorAll('.course-card');
+  courseCards.forEach(function(card, i) {
+    var startRot = (i - 1) * 8;
+    gsap.set(card, { opacity: 0, y: 60, rotation: startRot });
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      rotation: (i - 1) * 1.5,
+      duration: 0.7,
+      delay: i * 0.15,
+      ease: 'back.out(1.4)'
+    });
+  });
+
+  /* Animated counters */
+  gsap.utils.toArray('.counter-number').forEach(function(counter) {
+    var target = parseInt(counter.getAttribute('data-target'), 10);
+    var obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      scrollTrigger: {
+        trigger: counter,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: function() {
+        counter.textContent = Math.round(obj.val);
+      }
+    });
+  });
+
+  /* Timeline fill line */
+  var timelineSection = document.getElementById('histoire');
+  if (timelineSection) {
+    var fill = document.getElementById('timeline-fill');
+    var items = timelineSection.querySelectorAll('.timeline-item');
+    ScrollTrigger.create({
+      trigger: timelineSection,
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onUpdate: function(self) {
+        var pct = Math.min(self.progress * 110, 100);
+        fill.style.height = pct + '%';
+        items.forEach(function(item, i) {
+          var threshold = (i / (items.length - 1)) * 0.9;
+          if (self.progress > threshold) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  /* Bidding nav — active state on scroll */
+  var sections = [
+    { id: 'champions', btn: 0 },
+    { id: 'calendrier', btn: 1 },
+    { id: 'ecole', btn: 2 },
+    { id: 'comite', btn: 3 }
+  ];
+  var navBtns = document.querySelectorAll('.bidding-nav-btn');
+
+  sections.forEach(function(sec) {
+    var el = document.getElementById(sec.id);
+    if (el) {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: function() { setActiveNav(sec.btn); },
+        onEnterBack: function() { setActiveNav(sec.btn); }
+      });
+    }
+  });
+
+  function setActiveNav(index) {
+    navBtns.forEach(function(btn, i) {
+      btn.classList.toggle('active', i === index);
+    });
+  }
+}
+
+/* ============================================================
+   SMOOTH NAV (bidding box click)
+   ============================================================ */
+function smoothNav(target) {
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: target, offsetY: 40 },
+    ease: 'power2.inOut'
+  });
+}
+
+/* ============================================================
+   LOGIN FORM (prevent default)
+   ============================================================ */
+function handleLogin(event) {
+  event.preventDefault();
+  var form = event.target;
+  var btn = form.querySelector('.login-btn');
+  btn.textContent = 'Connexion en cours...';
+  setTimeout(function() {
+    btn.textContent = 'Espace membre indisponible';
+    setTimeout(function() {
+      btn.textContent = 'Connexion';
+    }, 2000);
+  }, 1500);
+}
+
+/* ============================================================
+   HAMBURGER NAV
+   ============================================================ */
+(function initHamburger() {
+  var btn = document.getElementById('hamburger-btn');
+  var overlay = document.getElementById('nav-overlay');
+  var links = overlay.querySelectorAll('.nav-overlay-link');
+
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+
+    /* Stagger links animation */
+    if (overlay.classList.contains('open')) {
+      links.forEach(function(link, i) {
+        link.style.transition = 'opacity 0.4s ease ' + (i * 0.06) + 's, transform 0.4s ease ' + (i * 0.06) + 's';
+      });
+    }
+  });
+
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      var target = this.getAttribute('data-target');
+      btn.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (target) {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: { y: target, offsetY: 40 },
+          ease: 'power2.inOut'
+        });
+      }
+    });
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      btn.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+
+/* ============================================================
+   SMOOTH SCROLL FOR ALL ANCHOR LINKS
+   ============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var target = this.getAttribute('href');
+    if (target && target !== '#') {
+      e.preventDefault();
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: { y: target, offsetY: 40 },
+        ease: 'power2.inOut'
+      });
+    }
+  });
+});
+
+/* ============================================================
+   PARALLAX — Hero felt overlay subtle movement
+   ============================================================ */
+(function initParallax() {
+  var heroOverlay = document.querySelector('.hero-felt-overlay');
+  var hero = document.querySelector('.hero');
+  if (!heroOverlay || !hero) return;
+
+  ScrollTrigger.create({
+    trigger: hero,
+    start: 'top top',
+    end: 'bottom top',
+    onUpdate: function(self) {
+      var yOffset = self.progress * 60;
+      heroOverlay.style.transform = 'translateY(' + yOffset + 'px)';
+    }
+  });
+})();
+
+/* ============================================================
+   COMPASS TABLE — subtle rotation on scroll
+   ============================================================ */
+(function initCompassTableAnim() {
+  var ct = document.querySelector('.compass-table');
+  if (!ct) return;
+
+  ScrollTrigger.create({
+    trigger: ct,
+    start: 'top 80%',
+    end: 'bottom 20%',
+    onUpdate: function(self) {
+      var rot = (self.progress - 0.5) * 6;
+      ct.querySelector('.compass-table-ring').style.transform = 'rotate(' + rot + 'deg)';
+    }
+  });
+})();
+
+/* ============================================================
+   INTERSTITIAL — background suit parallax
+   ============================================================ */
+(function initInterstitialParallax() {
+  document.querySelectorAll('.interstitial').forEach(function(section) {
+    var bgSuit = section.querySelector('.interstitial-bg-suit');
+    if (!bgSuit) return;
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top bottom',
+      end: 'bottom top',
+      onUpdate: function(self) {
+        var yShift = (self.progress - 0.5) * 80;
+        var scale = 1 + self.progress * 0.1;
+        bgSuit.style.transform = 'translateY(' + yShift + 'px) scale(' + scale + ')';
+      }
+    });
+  });
+})();
+
+/* ============================================================
+   CARD HAND — tilt cards slightly on mouse proximity
+   ============================================================ */
+(function initCardHandInteraction() {
+  var hand = document.querySelector('.card-hand');
+  if (!hand) return;
+  var cards = hand.querySelectorAll('.hand-card');
+  hand.addEventListener('mousemove', function(e) {
+    var rect = hand.getBoundingClientRect();
+    var mouseX = e.clientX - rect.left;
+    var centerX = rect.width / 2;
+    var ratio = (mouseX - centerX) / centerX;
+    cards.forEach(function(card, i) {
+      var baseAngle = (i - (cards.length - 1) / 2) * 2.5;
+      var extraAngle = ratio * 3;
+      card.style.transform = 'rotate(' + (baseAngle + extraAngle) + 'deg)';
+    });
+  });
+  hand.addEventListener('mouseleave', function() {
+    cards.forEach(function(card, i) {
+      var baseAngle = (i - (cards.length - 1) / 2) * 2.5;
+      card.style.transform = 'rotate(' + baseAngle + 'deg)';
+    });
+  });
+})();
+</script>
+
+<!-- QR Code Vote -->
+<a href="https://vote.lekibbitz.fr" target="_blank" rel="noopener noreferrer" class="qr-vote-block" title="Votez pour votre design préféré">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAAAGQElEQVR4nO3dwY0jNxBA0bWxOTkL3x2h787CUdkZTB2Iv0Vq3juvWlKP9oNAF8gfPwAAAAAAAAAA4H2/Tf/g37///O9XfJAtf/z1z5f34PT7n15/ev3k9s+//fv69O9Xm77/77/qgwDfj8AAGYEBMgIDZAQGyAgMkBEYIPPz9AKncxq1eg7k1O1zOKfvX8/5nL7/tk///2MFA2QEBsgIDJARGCAjMEBGYICMwACZ4zmYST2HcPscxfYcTW17P5R6Tmfb6/9/rGCAjMAAGYEBMgIDZAQGyAgMkBEYIJPPwbyu3k/l9XOPbp9D2Z7T+e6sYICMwAAZgQEyAgNkBAbICAyQERggYw5msL0fzO1zHNv70Wz/ffiaFQyQERggIzBARmCAjMAAGYEBMgIDZPI5mNfnDLbPXZref/vcpXq/m1Pb+83cfv2aFQyQERggIzBARmCAjMAAGYEBMgIDZI7nYLb3I6mdznl4/We//tSn//+xggEyAgNkBAbICAyQERggIzBARmCAzNN7TfwKt+8ncvu5QK/fv9f3Y9lmBQNkBAbICAyQERggIzBARmCAjMAAmeef8W/Pgdy+38jt32/79ae2P//tr7eCATICA2QEBsgIDJARGCAjMEBGYIDMeC7S9nP0U9v7rUy279/rcyanr9/+fd9+LtLp/beCATICA2QEBsgIDJARGCAjMEBGYIDM+Iz79ef0t8853H4u0facze3Xn7z++zAHA1xLYICMwAAZgQEyAgNkBAbICAyQOX7Gvj0nsH390/efvD4ncfvnn9w+J3X797OCATICA2QEBsgIDJARGCAjMEBGYIDMeC7S67bnDCan1799v57J9t+nvv7t369mBQNkBAbICAyQERggIzBARmCAjMAAmeNzkbbnSCa378dxavvcn8nt+71M7OdjPxjgUgIDZAQGyAgMkBEYICMwQEZggEy+V0Q9B7C9H8jtr5+4f2/vx3L7HJAVDJARGCAjMEBGYICMwAAZgQEyAgNkjp/R3/4cfvL6559s71dT276/k9fneCb2gwHWCAyQERggIzBARmCAjMAAGYEBMj+nf/D6HMX2HMBke05isj2HsT0HtX3/J9v7+UysYICMwAAZgQEyAgNkBAbICAyQERggMz6j355j2H7/yetzQpNP36/k9r/f7fvdTKxggIzAABmBATICA2QEBsgIDJARGCAz7gdz+xzLdP16v47t+/Pdvb4fzWR7TuiUFQyQERggIzBARmCAjMAAGYEBMgIDZI6fgd9+Lk99/e05n9f3O5ncPmf0+t+v/vxWMEBGYICMwAAZgQEyAgNkBAbICAyQGfeD2Xb7nMunz8nUr9+2PWdz+5zLKSsYICMwQEZggIzAABmBATICA2QEBsiMczC3zzlsz3HcPidz6vX9ZE5t/31rzkUCniUwQEZggIzAABmBATICA2QEBsiMz8A/fQ7g1O1zKNv7nWzv53O72+ewTu+vFQyQERggIzBARmCAjMAAGYEBMgIDZPJzkbbnRLbffzJ9vnrO6PX7V9u+P6e2768VDJARGCAjMEBGYICMwAAZgQEyAgNkjveDqd2+n8jt+3Fs7+cy2f59vW779zuxggEyAgNkBAbICAyQERggIzBARmCAzNV7WdzAfiBf257D2J4j2p4T2j6XbHp/KxggIzBARmCAjMAAGYEBMgIDZAQGyIznIn36fh2n5xLVtucYbj93aXsOZLI9R7M9R2QFA2QEBsgIDJARGCAjMEBGYICMwACZcQ5msj0nMrl9juPTbe+XMqnnaG7//jUrGCAjMEBGYICMwAAZgQEyAgNkBAbIHM/BTLb3M6mvf/ucxOT2OYrbbd+/+tyn0zkwKxggIzBARmCAjMAAGYEBMgIDZAQGyORzMN/d9pzOqXpO4vT9J9vnLn36uVMTKxggIzBARmCAjMAAGYEBMgIDZAQGyJiDiW3PiXz6fjanTu/f9pxNzX4wwLUEBsgIDJARGCAjMEBGYICMwACZfA7m9TmJU9tzDttzMrXt/U7qOaLX55isYICMwAAZgQEyAgNkBAbICAyQERggMz4Dv30O4tT2uUL1uTuT7TmZ73797d/fxLlIwLUEBsgIDJARGCAjMEBGYICMwAAAAAAAAAAAAMAX/gf7Et0TlZslTQAAAABJRU5ErkJggg==" alt="QR Code — vote.lekibbitz.fr">
+  <p>Votez !</p>
+  <p class="qr-label">vote.lekibbitz.fr</p>
+</a>
+</body>
+</html>
